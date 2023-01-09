@@ -1,3 +1,4 @@
+import 'package:budgetapp/components/bottom_menu.dart';
 import 'package:budgetapp/screens/expenses_screen/expenses_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'DMSans',
       ),
-      home: const ExpScreen(),
+      home: const BottomMenu(),
     );
   }
 }

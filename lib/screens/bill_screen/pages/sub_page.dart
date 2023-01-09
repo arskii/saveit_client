@@ -35,7 +35,7 @@ class _SubPageState extends State<SubPage> {
                 style: TextStyle(fontSize: 48, fontWeight: FontWeight.w700),
               ),
               Container(
-                height: 350,
+                height: 250,
                 decoration: BoxDecoration(
                   border: Border.all(color: textGray),
                   borderRadius: BorderRadius.circular(18),

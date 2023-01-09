@@ -7,6 +7,9 @@ import 'package:budgetapp/components/bottom_menu.dart';
 import 'package:budgetapp/screens/bill_screen/pages/sub_page.dart';
 import 'package:budgetapp/constants.dart';
 
+import '../../settings_screen.dart';
+import '../expenses_screen/expenses_screen.dart';
+
 class BillScreen extends StatefulWidget {
   const BillScreen({super.key});
 
@@ -30,65 +33,73 @@ class _BillScreenState extends State<BillScreen>
 
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Bill ${_tabController.index + 1} ',
-            style: TextStyle(fontWeight: FontWeight.w700),
-          ),
-          backgroundColor: Color(0xffffffff),
-          titleTextStyle: TextStyle(color: textPrimary, fontSize: 18),
-          centerTitle: true,
-          elevation: 0,
-          toolbarHeight: 100,
-          leading: IconButton(
-            color: textPrimary,
-            icon: SvgPicture.asset('assets/icons/backButton.svg'),
-            onPressed: () {},
-          ),
-          actions: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: IconButton(
-                    color: textPrimary,
-                    icon: SvgPicture.asset('assets/icons/addIcon.svg'),
-                    onPressed: () {},
-                  ),
-                )),
-          ],
-          bottom: TabBar(
-              controller: _tabController,
-              labelColor: textPrimary,
-              indicatorColor: textActive,
-              labelStyle: TextStyle(fontWeight: FontWeight.w700),
-              indicatorPadding: EdgeInsets.symmetric(horizontal: 20),
-              tabs: [
-                Tab(
-                  text: 'Bills',
-                ),
-                Tab(
-                  text: 'Payments',
-                ),
-                Tab(
-                  text: 'Subscription',
-                )
-              ]),
+      appBar: AppBar(
+        title: Text(
+          'Bill ${_tabController.index + 1} ',
+          style: TextStyle(fontWeight: FontWeight.w700),
         ),
-        bottomNavigationBar: BottomMenu(),
-        body: TabBarView(
-          controller: _tabController,
+        backgroundColor: Color(0xffffffff),
+        titleTextStyle: TextStyle(color: textPrimary, fontSize: 18),
+        centerTitle: true,
+        elevation: 0,
+        toolbarHeight: 100,
+        leading: IconButton(
+          color: textPrimary,
+          icon: SvgPicture.asset('assets/icons/backButton.svg'),
+          onPressed: () {},
+        ),
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {},
+                child: IconButton(
+                  color: textPrimary,
+                  icon: SvgPicture.asset('assets/icons/addIcon.svg'),
+                  onPressed: () {},
+                ),
+              )),
+        ],
+        bottom: TabBar(
+            controller: _tabController,
+            labelColor: textPrimary,
+            indicatorColor: textActive,
+            labelStyle: TextStyle(fontWeight: FontWeight.w700),
+            indicatorPadding: EdgeInsets.symmetric(horizontal: 20),
+            tabs: [
+              Tab(
+                text: 'Bills',
+              ),
+              Tab(
+                text: 'Payments',
+              ),
+              Tab(
+                text: 'Subscription',
+              )
+            ]),
+      ),
+      body: Column(children: <Widget>[
+        Expanded(
+            child: ListView(
+          shrinkWrap: true,
           children: [
-            Center(
-              child: Text('Tab 1'),
-            ),
-            Center(
-              child: Text('Tab 2'),
-            ),
-            Center(
-              child: SubPage(),
+            TabBarView(
+              controller: _tabController,
+              children: [
+                Center(
+                  child: Text('Tab 1'),
+                ),
+                Center(
+                  child: Text('Tab 2'),
+                ),
+                Center(
+                  child: Text('Tab 2'),
+                ),
+              ],
             )
           ],
-        ));
+        )),
+      ]),
+    );
   }
 }
