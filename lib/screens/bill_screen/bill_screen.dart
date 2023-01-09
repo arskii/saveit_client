@@ -78,28 +78,18 @@ class _BillScreenState extends State<BillScreen>
               )
             ]),
       ),
-      body: Column(children: <Widget>[
-        Expanded(
-            child: ListView(
-          shrinkWrap: true,
-          children: [
-            TabBarView(
-              controller: _tabController,
-              children: [
-                Center(
-                  child: Text('Tab 1'),
-                ),
-                Center(
-                  child: Text('Tab 2'),
-                ),
-                Center(
-                  child: Text('Tab 2'),
-                ),
-              ],
-            )
-          ],
-        )),
-      ]),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          Center(
+            child: Text('Tab 1'),
+          ),
+          Center(
+            child: Text('Tab 2'),
+          ),
+          SubPage()
+        ],
+      ),
     );
   }
 }
