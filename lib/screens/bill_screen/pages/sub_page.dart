@@ -1,9 +1,12 @@
 import 'package:budgetapp/constants.dart';
+import 'package:budgetapp/utils/subscription.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../models/sub.dart';
 
 class SubPage extends StatefulWidget {
   const SubPage({super.key});
@@ -13,7 +16,14 @@ class SubPage extends StatefulWidget {
 }
 
 class _SubPageState extends State<SubPage> {
+  late Future<Subcription> sub;
+
   @override
+  void initState() {
+    sub = Sub();
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -27,6 +37,8 @@ class _SubPageState extends State<SubPage> {
       {"icon": "assets/icons/apple.svg", "text": "Apple", "price": "19.99"},
       {"icon": "assets/icons/spotify.svg", "text": "Spotify", "price": "6.99"},
     ];
+    Sub();
+    print(Sub());
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -62,29 +74,32 @@ class _SubPageState extends State<SubPage> {
             ),
           ),
           width: width * 0.9,
-          child: ListView.builder(
-            padding: EdgeInsets.all(20),
-            shrinkWrap: true,
-            itemCount: data.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SvgPicture.asset(
-                      data[index]["icon"],
-                    ),
-                    Column(
-                      children: [
-                        Text(data[index]["text"]),
-                        Text("\$${data[index]['price']}/mo"),
-                      ],
-                    ),
-                    SvgPicture.asset("assets/icons/arrowRight.svg")
-                  ],
-                ),
-              );
+          child: FutureBuilder<Subcription>(
+            future: sub,
+            // padding: EdgeInsets.all(20),
+            // shrinkWrap: true,
+            // itemCount: data.length,
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SvgPicture.asset(
+                        snapshot.data.icon!,
+                      ),
+                      Column(
+                        children: [
+                          Text(snapshot.data.text!),
+                          Text("\$${snapshot.data.price!}/mo"),
+                        ],
+                      ),
+                      SvgPicture.asset("assets/icons/arrowRight.svg")
+                    ],
+                  ),
+                );
+              }
             },
           ),
         )

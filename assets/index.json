@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "icon": "assets/icons/patreon.svg",
+            "text": "Patreon membership",
+            "price": "19.99"
+        },
+        {
+            "icon": "assets/icons/netflix.svg",
+            "text": "Netflix",
+            "price": "12.00"
+        },
+        {
+            "icon": "assets/icons/apple.svg",
+            "text": "Apple",
+            "price": "19.99"
+        },
+        {
+            "icon": "assets/icons/spotify.svg",
+            "text": "Spotify",
+            "price": "6.99"
+        }
+    ]
+}
