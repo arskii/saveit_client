@@ -1,5 +1,5 @@
 import 'package:budgetapp/constants.dart';
-import 'package:budgetapp/utils/subscription.dart';
+import 'package:budgetapp/api/subscription.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -16,29 +16,18 @@ class SubPage extends StatefulWidget {
 }
 
 class _SubPageState extends State<SubPage> {
-  late Future<Subcription> sub;
+  var isLoaded = false;
 
   @override
   void initState() {
-    sub = Sub();
     super.initState();
+    // get Data
+    getSub();
   }
 
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    List data = [
-      {
-        "icon": "assets/icons/patreon.svg",
-        "text": "Patreon membership",
-        "price": "19.99"
-      },
-      {"icon": "assets/icons/netflix.svg", "text": "Netflix", "price": "12.00"},
-      {"icon": "assets/icons/apple.svg", "text": "Apple", "price": "19.99"},
-      {"icon": "assets/icons/spotify.svg", "text": "Spotify", "price": "6.99"},
-    ];
-    Sub();
-    print(Sub());
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -74,35 +63,41 @@ class _SubPageState extends State<SubPage> {
             ),
           ),
           width: width * 0.9,
-          child: FutureBuilder<Subcription>(
-            future: sub,
-            // padding: EdgeInsets.all(20),
-            // shrinkWrap: true,
-            // itemCount: data.length,
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SvgPicture.asset(
-                        snapshot.data.icon!,
-                      ),
-                      Column(
-                        children: [
-                          Text(snapshot.data.text!),
-                          Text("\$${snapshot.data.price!}/mo"),
-                        ],
-                      ),
-                      SvgPicture.asset("assets/icons/arrowRight.svg")
-                    ],
-                  ),
-                );
-              }
-            },
-          ),
-        )
+          child: FutureBuilder<List<Subcription>>(
+              future: getSub(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  List<Subcription> sub = snapshot.data;
+                  return ListView.builder(
+                    padding: const EdgeInsets.all(20),
+                    shrinkWrap: true,
+                    itemCount: sub.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SvgPicture.asset(
+                              sub[index].icon!,
+                            ),
+                            Column(
+                              children: [
+                                Text(sub[index].text!),
+                                Text("\$${sub[index].price!}/mo"),
+                              ],
+                            ),
+                            SvgPicture.asset("assets/icons/arrowRight.svg")
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  return CircularProgressIndicator();
+                }
+              }),
+        ),
       ],
     );
   }
