@@ -1,5 +1,6 @@
 import 'package:budgetapp/components/bottom_menu.dart';
 import 'package:budgetapp/screens/expenses_screen/expenses_screen.dart';
+import 'package:budgetapp/screens/expenses_screen/log_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:budgetapp/screens/bill_screen/bill_screen.dart';
@@ -18,9 +19,9 @@ class MyApp extends StatelessWidget {
       title: 'Budget app',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: 'DMSans',
+        fontFamily: 'BebasNeue',
       ),
-      home: const BottomMenu(),
+      home: LoginScreen(),
     );
   }
 }

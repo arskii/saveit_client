@@ -46,11 +46,15 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: DMSans
+    - family: BebasNeue
       fonts:
-        - asset: fonts/DMSans-Regular.ttf
-        - asset: fonts/DMSans-Bold.ttf
+        - asset: fonts/BebasNeue-Regular.ttf
+       
           weight: 700
+    
+    - family: Jost
+      fonts: 
+        - asset: fonts/Jost-Regular.ttf
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
