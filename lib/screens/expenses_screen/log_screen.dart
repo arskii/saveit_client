@@ -77,11 +77,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: 'Password',
                     obscureText: true,
                     suffixIcon: Align(
-                        widthFactor: 1.0,
-                        heightFactor: 1.0,
-                        child: Icon(
-                          Icons.remove_red_eye,
-                        )),
+                      widthFactor: 1.0,
+                      heightFactor: 1.0,
+                      child: Icon(
+                        Icons.remove_red_eye,
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 17,

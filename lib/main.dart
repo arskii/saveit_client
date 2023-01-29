@@ -1,6 +1,7 @@
 import 'package:budgetapp/components/bottom_menu.dart';
 import 'package:budgetapp/screens/expenses_screen/expenses_screen.dart';
 import 'package:budgetapp/screens/expenses_screen/log_screen.dart';
+import 'package:budgetapp/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:budgetapp/screens/bill_screen/bill_screen.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'BebasNeue',
       ),
-      home: LoginScreen(),
+      home: SignUP(),
     );
   }
 }
