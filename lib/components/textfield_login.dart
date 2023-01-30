@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class MyTextField extends StatelessWidget {
+class LoginTexfield extends StatelessWidget {
   final controller;
   final String labelText;
   final bool obscureText;
   final TextInputType keyboardType;
   final Widget? suffixIcon;
 
-  const MyTextField(
+  const LoginTexfield(
       {super.key,
       required this.controller,
       required this.labelText,

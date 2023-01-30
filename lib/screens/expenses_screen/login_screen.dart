@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:budgetapp/components/login_button.dart';
-import 'package:budgetapp/components/my_textfield.dart';
 import 'package:budgetapp/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../components/textfield_login.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -60,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
 
                   const SizedBox(height: 225),
-                  MyTextField(
+                  LoginTexfield(
                     keyboardType: TextInputType.emailAddress,
                     controller: usernameController,
                     labelText: 'Email',
@@ -71,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   // password
 
-                  MyTextField(
+                  LoginTexfield(
                     keyboardType: TextInputType.visiblePassword,
                     controller: passwordController,
                     labelText: 'Password',
@@ -91,7 +92,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     'Forgot your password?',
                     style: TextStyle(fontFamily: 'Jost', fontSize: 16.0),
                   ),
-                  LoginButton()
+                  LoginButton(
+                    text: 'Log in',
+                  )
                 ],
               ),
             ),

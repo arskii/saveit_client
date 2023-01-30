@@ -4,7 +4,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+  final String text;
+  const LoginButton({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class LoginButton extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          'Log In',
+          text,
           style: TextStyle(color: Colors.white, fontSize: 30),
         ),
       ),
