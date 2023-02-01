@@ -2,6 +2,8 @@ import 'package:budgetapp/components/login_button.dart';
 import 'package:budgetapp/components/verify_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:otp_text_field/otp_field.dart';
+import 'package:otp_text_field/style.dart';
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({super.key});
@@ -11,7 +13,7 @@ class VerifyScreen extends StatefulWidget {
 }
 
 class _VerifyScreenState extends State<VerifyScreen> {
-  final verifyController = TextEditingController();
+  final OtpFieldController otpController = OtpFieldController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,9 +58,27 @@ class _VerifyScreenState extends State<VerifyScreen> {
                 SizedBox(
                   height: 40,
                 ),
-                VerifyBox(
-                  controller: verifyController,
-                  keyboardType: TextInputType.number,
+                // VerifyBox(
+                //   controller: verifyController,
+                //   keyboardType: TextInputType.number,
+                // ),
+                Container(
+                  width: 270,
+                  child: OTPTextField(
+                    controller: otpController,
+                    length: 4,
+                    width: MediaQuery.of(context).size.width,
+                    fieldWidth: 45,
+                    style: TextStyle(fontSize: 20),
+                    textFieldAlignment: MainAxisAlignment.spaceBetween,
+                    fieldStyle: FieldStyle.box,
+                    onChanged: (pin) {
+                      print("Changed: " + pin);
+                    },
+                    onCompleted: (pin) {
+                      print("Completed: " + pin);
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: 200,
