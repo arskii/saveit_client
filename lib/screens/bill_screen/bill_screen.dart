@@ -7,7 +7,7 @@ import 'package:budgetapp/components/bottom_menu.dart';
 import 'package:budgetapp/screens/bill_screen/pages/sub_page.dart';
 import 'package:budgetapp/constants.dart';
 
-import '../../settings_screen.dart';
+import '../settings_screen.dart';
 import '../expenses_screen/expenses_screen.dart';
 
 class BillScreen extends StatefulWidget {

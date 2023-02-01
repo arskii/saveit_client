@@ -1,9 +1,9 @@
-import 'package:budgetapp/components/login_button.dart';
-import 'package:budgetapp/components/textfield_login.dart';
+import 'package:budgetapp/components/main_button.dart';
+import 'package:budgetapp/components/main_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'components/social_button.dart';
+import '../components/social_button.dart';
 
 class SignUP extends StatelessWidget {
   SignUP({super.key});
@@ -63,7 +63,7 @@ class SignUP extends StatelessWidget {
 
                 // email Textfield
 
-                LoginTexfield(
+                MainTexfield(
                   keyboardType: TextInputType.emailAddress,
                   controller: usernameController,
                   labelText: 'Email',
@@ -76,7 +76,7 @@ class SignUP extends StatelessWidget {
 
                 // password Textfield
 
-                LoginTexfield(
+                MainTexfield(
                   controller: passwordController,
                   labelText: 'Password',
                   keyboardType: TextInputType.visiblePassword,
@@ -95,7 +95,7 @@ class SignUP extends StatelessWidget {
                 ),
 
                 // repeat password
-                LoginTexfield(
+                MainTexfield(
                   keyboardType: TextInputType.visiblePassword,
                   controller: passwordController,
                   labelText: 'Confirm Password',
@@ -142,7 +142,7 @@ class SignUP extends StatelessWidget {
                   style: TextStyle(fontSize: 14),
                 ),
 
-                LoginButton(
+                MainButton(
                   text: 'Sign up',
                 ),
 

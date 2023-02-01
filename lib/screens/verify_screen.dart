@@ -1,9 +1,10 @@
-import 'package:budgetapp/components/login_button.dart';
-import 'package:budgetapp/components/verify_box.dart';
 import 'package:flutter/material.dart';
+
+import 'package:budgetapp/components/main_button.dart';
+import 'package:budgetapp/components/pincode_field.dart';
+import 'package:budgetapp/components/verify_box.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/style.dart';
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({super.key});
@@ -13,23 +14,23 @@ class VerifyScreen extends StatefulWidget {
 }
 
 class _VerifyScreenState extends State<VerifyScreen> {
-  final OtpFieldController otpController = OtpFieldController();
+  final TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xff67EACA),
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xff67EACA),
-                    Color(0xffFCF9EC),
-                  ]),
-            ),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xff67EACA),
+                  Color(0xffFCF9EC),
+                ]),
+          ),
+          child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -62,20 +63,17 @@ class _VerifyScreenState extends State<VerifyScreen> {
                 //   controller: verifyController,
                 //   keyboardType: TextInputType.number,
                 // ),
-                Container(
+                SizedBox(
                   width: 270,
-                  child: OTPTextField(
-                    controller: otpController,
+                  child: PinCodeFields(
+                    controller: controller,
                     length: 4,
-                    width: MediaQuery.of(context).size.width,
                     fieldWidth: 45,
-                    style: TextStyle(fontSize: 20),
-                    textFieldAlignment: MainAxisAlignment.spaceBetween,
-                    fieldStyle: FieldStyle.box,
-                    onChanged: (pin) {
+                    textStyle: TextStyle(fontSize: 20),
+                    onChange: (pin) {
                       print("Changed: " + pin);
                     },
-                    onCompleted: (pin) {
+                    onComplete: (pin) {
                       print("Completed: " + pin);
                     },
                   ),
@@ -83,7 +81,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                 SizedBox(
                   height: 200,
                 ),
-                LoginButton(text: 'Confirm')
+                MainButton(text: 'Confirm')
               ],
             ),
           ),

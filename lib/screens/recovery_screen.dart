@@ -1,5 +1,5 @@
-import 'package:budgetapp/components/login_button.dart';
-import 'package:budgetapp/components/textfield_login.dart';
+import 'package:budgetapp/components/main_button.dart';
+import 'package:budgetapp/components/main_textfield.dart';
 import 'package:budgetapp/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -60,7 +60,7 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
                 SizedBox(
                   height: 30,
                 ),
-                LoginTexfield(
+                MainTexfield(
                   keyboardType: TextInputType.emailAddress,
                   obscureText: false,
                   labelText: 'Email',
@@ -69,7 +69,7 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
                 SizedBox(
                   height: 190,
                 ),
-                LoginButton(
+                MainButton(
                   text: 'Send',
                 ),
               ],

@@ -1,8 +1,9 @@
-import 'package:budgetapp/components/pincode.dart';
 import 'package:flutter/material.dart';
+
+import 'package:budgetapp/components/pincode_field.dart';
+import 'package:budgetapp/components/pincode_numpud.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:otp_text_field/otp_text_field.dart';
-import 'package:otp_text_field/style.dart';
 
 class PinCodeScreen extends StatefulWidget {
   const PinCodeScreen({super.key});
@@ -12,31 +13,36 @@ class PinCodeScreen extends StatefulWidget {
 }
 
 class _PinCodeScreenState extends State<PinCodeScreen> {
-  final OtpFieldController controller = OtpFieldController();
+  final TextEditingController controller = TextEditingController();
+  FocusNode focusNode = FocusNode();
+
+  @override
+  void dispose() {
+    controller.dispose();
+    focusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xff67EACA),
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xff67EACA),
-                    Color(0xffFCF9EC),
-                  ]),
-            ),
+        child: Container(
+          height: h,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xff67EACA),
+                  Color(0xffFCF9EC),
+                ]),
+          ),
+          child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 60,
-                  width: 30,
-                ),
-
                 // Welcome
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -55,26 +61,29 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
                   ],
                 ),
 
+                SizedBox(height: 25),
+
                 Padding(
                   padding: EdgeInsets.all(20),
                   child: SizedBox(
+                    width: 270,
                     height: 70,
-                    child: Center(
-                      child: OTPTextField(
-                        controller: controller,
-                        length: 4,
-                        width: MediaQuery.of(context).size.width,
-                        fieldWidth: 45,
-                        style: TextStyle(fontSize: 20),
-                        textFieldAlignment: MainAxisAlignment.spaceBetween,
-                        fieldStyle: FieldStyle.box,
-                        onChanged: (pin) {
-                          print("Changed: " + pin);
-                        },
-                        onCompleted: (pin) {
-                          print("Completed: " + pin);
-                        },
-                      ),
+                    child: PinCodeFields(
+                      focusNode: focusNode,
+                      fieldHeight: 50,
+                      fieldWidth: 45,
+                      fieldBorderStyle: FieldBorderStyle.bottom,
+                      keyboardType: TextInputType.none,
+                      borderWidth: 2,
+                      borderColor: Colors.white,
+                      activeBorderColor: Color(0xFF1FAB89),
+                      textStyle: TextStyle(fontSize: 25),
+                      length: 4,
+                      controller: controller,
+                      animation: Animations.slideInDown,
+                      onComplete: (output) {
+                        print(output);
+                      },
                     ),
                   ),
                 ),
@@ -83,22 +92,28 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
                   buttonColor: Colors.white,
                   controller: controller,
                   delete: () {
-                    controller.text = controller.text.substring(
-                      0,
-                      controller.text.length - 1,
-                    );
+                    if (controller.text.isNotEmpty) {
+                      controller.text = controller.text.substring(
+                        0,
+                        controller.text.length - 1,
+                      );
+                    }
                   },
                   onSubmit: () {
                     debugPrint('your code is ${controller.text}');
                   },
                 ),
                 SizedBox(
-                  height: 20,
+                  height: h / 6,
                 ),
-                Text(
-                  'Forgot your pin?',
-                  style: TextStyle(fontSize: 16, fontFamily: 'Jost'),
-                )
+                InkWell(
+                    onTap: () {
+                      print('You clicked');
+                    },
+                    child: Text(
+                      'Forgot your pin?',
+                      style: TextStyle(fontSize: 16, fontFamily: 'Jost'),
+                    ))
               ],
             ),
           ),

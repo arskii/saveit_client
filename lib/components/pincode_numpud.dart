@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:otp_text_field/otp_field.dart';
 
 class PinCode extends StatelessWidget {
   final double buttonSize;
   final Color buttonColor;
-  final OtpFieldController controller;
+  final TextEditingController controller;
   final Function delete;
   final Function onSubmit;
   PinCode({
@@ -138,7 +138,7 @@ class NumberButton extends StatelessWidget {
   final int number;
   final double size;
   final Color color;
-  final OtpFieldController controller;
+  final TextEditingController controller;
 
   NumberButton({
     super.key,
