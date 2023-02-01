@@ -5,6 +5,8 @@ import 'package:budgetapp/components/pincode_numpud.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../constants.dart';
+
 class PinCodeScreen extends StatefulWidget {
   const PinCodeScreen({super.key});
 
@@ -35,8 +37,8 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Color(0xff67EACA),
-                  Color(0xffFCF9EC),
+                  mainColor,
+                  secondColor,
                 ]),
           ),
           child: SafeArea(

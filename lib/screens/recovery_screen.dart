@@ -15,20 +15,21 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
   final emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xff67EACA),
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xff67EACA),
-                    Color(0xffFCF9EC),
-                  ]),
-            ),
+        child: Container(
+          height: h,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  mainColor,
+                  secondColor,
+                ]),
+          ),
+          child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

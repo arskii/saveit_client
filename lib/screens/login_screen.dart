@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../components/main_textfield.dart';
+import '../constants.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -23,17 +24,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xff67EACA),
       body: SingleChildScrollView(
         child: Container(
+          height: h,
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [
-                  Color(0xff67EACA),
-                  Color(0xffFCF9EC),
+                colors: const [
+                  mainColor,
+                  secondColor,
                 ]),
           ),
           child: SafeArea(

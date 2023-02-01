@@ -4,32 +4,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../components/social_button.dart';
+import '../constants.dart';
 
-class SignUP extends StatelessWidget {
+class SignUP extends StatefulWidget {
   SignUP({super.key});
 
+  @override
+  State<SignUP> createState() => _SignUPState();
+}
+
+class _SignUPState extends State<SignUP> {
   //text controlling
   final usernameController = TextEditingController();
+
   final passwordController = TextEditingController();
-  final phoneController = TextEditingController();
+
+  final repeatPasswordController = TextEditingController();
+
+  bool isHidden = true;
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xff67EACA),
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xff67EACA),
-                    Color(0xffFCF9EC),
-                  ]),
-            ),
+        child: Container(
+          height: h,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  mainColor,
+                  secondColor,
+                ]),
+          ),
+          child: SafeArea(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Logo
                 const SizedBox(
@@ -80,12 +92,15 @@ class SignUP extends StatelessWidget {
                   controller: passwordController,
                   labelText: 'Password',
                   keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
-                  suffixIcon: Align(
-                    widthFactor: 1.0,
-                    heightFactor: 1.0,
-                    child: Icon(
-                      Icons.remove_red_eye,
+                  obscureText: isHidden,
+                  suffixIcon: InkWell(
+                    onTap: _togglePasswordView,
+                    child: Align(
+                      widthFactor: 1.0,
+                      heightFactor: 1.0,
+                      child: Icon(
+                        Icons.remove_red_eye,
+                      ),
                     ),
                   ),
                 ),
@@ -97,9 +112,9 @@ class SignUP extends StatelessWidget {
                 // repeat password
                 MainTexfield(
                   keyboardType: TextInputType.visiblePassword,
-                  controller: passwordController,
+                  controller: repeatPasswordController,
                   labelText: 'Confirm Password',
-                  obscureText: true,
+                  obscureText: isHidden,
                   suffixIcon: Align(
                     widthFactor: 1.0,
                     heightFactor: 1.0,
@@ -123,15 +138,20 @@ class SignUP extends StatelessWidget {
                 ),
 
                 // sign Up button
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SocialButton(
-                        icon: SvgPicture.asset('assets/icons/google.svg')),
-                    SocialButton(
-                      icon: SvgPicture.asset('assets/icons/facebook.svg'),
-                    )
-                  ],
+                SizedBox(
+                  width: 350,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SocialButton(
+                          onTap: () {},
+                          icon: SvgPicture.asset('assets/icons/google.svg')),
+                      SocialButton(
+                        onTap: () {},
+                        icon: SvgPicture.asset('assets/icons/facebook.svg'),
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 40,
@@ -139,7 +159,7 @@ class SignUP extends StatelessWidget {
 
                 Text(
                   'By clicking SIGN UP you agree to the following Terms and Conditions',
-                  style: TextStyle(fontSize: 14),
+                  style: TextStyle(fontSize: 15),
                 ),
 
                 MainButton(
@@ -149,9 +169,26 @@ class SignUP extends StatelessWidget {
                 // google + apple signup
 
                 // forgot password
-                Text(
-                  "Already have an account? Login",
-                  style: TextStyle(fontFamily: 'Jost', fontSize: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have an account?",
+                      style: TextStyle(fontFamily: 'Jost', fontSize: 20),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          fontFamily: 'Jost',
+                          color: accentColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    )
+                  ],
                 )
               ],
             ),
@@ -159,5 +196,11 @@ class SignUP extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _togglePasswordView() {
+    setState(() {
+      isHidden = !isHidden;
+    });
   }
 }

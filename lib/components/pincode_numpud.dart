@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../constants.dart';
+
 class PinCode extends StatelessWidget {
   final double buttonSize;
   final Color buttonColor;
@@ -158,7 +160,7 @@ class NumberButton extends StatelessWidget {
           backgroundColor: color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
-            side: BorderSide(color: Color(0xff1FAB89), width: 1),
+            side: const BorderSide(color: accentColor, width: 1),
           ),
         ),
         onPressed: () {

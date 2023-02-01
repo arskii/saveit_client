@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/pincode_field.dart';
-import 'package:budgetapp/components/verify_box.dart';
 
-import 'package:flutter_svg/flutter_svg.dart';
+import '../constants.dart';
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({super.key});
@@ -26,8 +26,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Color(0xff67EACA),
-                  Color(0xffFCF9EC),
+                  mainColor,
+                  secondColor,
                 ]),
           ),
           child: SafeArea(
