@@ -1,10 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:budgetapp/components/main_button.dart';
+import 'package:budgetapp/components/pincode_numpud.dart';
 import 'package:budgetapp/main.dart';
+import 'package:budgetapp/screens/pincode_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../components/main_textfield.dart';
 import '../constants.dart';
@@ -94,6 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(fontFamily: 'Jost', fontSize: 16.0),
                 ),
                 MainButton(
+                  onTap: () => Get.to(PinCodeScreen()),
                   text: 'Log in',
                 )
               ],

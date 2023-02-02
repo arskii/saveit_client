@@ -1,8 +1,12 @@
+import 'package:budgetapp/components/second_button.dart';
+import 'package:budgetapp/screens/login_screen.dart';
+import 'package:budgetapp/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../components/main_button.dart';
 
@@ -34,7 +38,7 @@ class _AuthScreenState extends State<AuthScreen> {
               SvgPicture.asset(
                 'assets/icons/logo.svg',
               ),
-              SizedBox(height: h / 4),
+              SizedBox(height: h / 8),
               SizedBox(
                 width: 350,
                 child: Text(
@@ -44,8 +48,15 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               SizedBox(height: 50),
               MainButton(
+                onTap: () {
+                  Get.to(SignUP());
+                },
                 text: 'Sign Up',
-              )
+              ),
+              SecondButton(
+                onTap: () => Get.to(LoginScreen()),
+                text: 'login',
+              ),
             ],
           ),
         ),

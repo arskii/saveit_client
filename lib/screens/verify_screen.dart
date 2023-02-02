@@ -66,6 +66,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
                 SizedBox(
                   width: 270,
                   child: PinCodeFields(
+                    keyboardType: TextInputType.number,
+                    activeBorderColor: accentColor,
                     controller: controller,
                     length: 4,
                     fieldWidth: 45,
@@ -81,7 +83,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                 SizedBox(
                   height: 200,
                 ),
-                MainButton(text: 'Confirm')
+                MainButton(text: 'Confirm', onTap: () {})
               ],
             ),
           ),

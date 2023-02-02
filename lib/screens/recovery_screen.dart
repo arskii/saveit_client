@@ -1,8 +1,11 @@
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/main_textfield.dart';
 import 'package:budgetapp/constants.dart';
+import 'package:budgetapp/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class RecoveryScreen extends StatefulWidget {
   RecoveryScreen({super.key});
@@ -67,10 +70,9 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
                   labelText: 'Email',
                   controller: emailController,
                 ),
-                SizedBox(
-                  height: 190,
-                ),
+                SizedBox(height: 130),
                 MainButton(
+                  onTap: () => Get.to(LoginScreen()),
                   text: 'Send',
                 ),
               ],

@@ -1,7 +1,10 @@
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/main_textfield.dart';
+import 'package:budgetapp/screens/login_screen.dart';
+import 'package:budgetapp/screens/verify_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../components/social_button.dart';
 import '../constants.dart';
@@ -45,7 +48,7 @@ class _SignUPState extends State<SignUP> {
               children: [
                 // Logo
                 const SizedBox(
-                  height: 60,
+                  height: 20,
                   width: 30,
                 ),
 
@@ -115,11 +118,14 @@ class _SignUPState extends State<SignUP> {
                   controller: repeatPasswordController,
                   labelText: 'Confirm Password',
                   obscureText: isHidden,
-                  suffixIcon: Align(
-                    widthFactor: 1.0,
-                    heightFactor: 1.0,
-                    child: Icon(
-                      Icons.remove_red_eye,
+                  suffixIcon: InkWell(
+                    onTap: _togglePasswordView,
+                    child: Align(
+                      widthFactor: 1.0,
+                      heightFactor: 1.0,
+                      child: Icon(
+                        Icons.remove_red_eye,
+                      ),
                     ),
                   ),
                 ),
@@ -153,9 +159,6 @@ class _SignUPState extends State<SignUP> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 40,
-                ),
 
                 Text(
                   'By clicking SIGN UP you agree to the following Terms and Conditions',
@@ -163,6 +166,7 @@ class _SignUPState extends State<SignUP> {
                 ),
 
                 MainButton(
+                  onTap: () => Get.to(VerifyScreen()),
                   text: 'Sign up',
                 ),
 
@@ -177,7 +181,7 @@ class _SignUPState extends State<SignUP> {
                       style: TextStyle(fontFamily: 'Jost', fontSize: 20),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () => Get.to(LoginScreen()),
                       child: Text(
                         'Login',
                         style: TextStyle(
@@ -189,7 +193,7 @@ class _SignUPState extends State<SignUP> {
                       ),
                     )
                   ],
-                )
+                ),
               ],
             ),
           ),

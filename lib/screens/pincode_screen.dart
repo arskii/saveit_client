@@ -1,9 +1,13 @@
+import 'package:budgetapp/screens/recovery_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:budgetapp/components/pincode_field.dart';
 import 'package:budgetapp/components/pincode_numpud.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:http/http.dart';
 
 import '../constants.dart';
 
@@ -20,7 +24,6 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
 
   @override
   void dispose() {
-    controller.dispose();
     focusNode.dispose();
     super.dispose();
   }
@@ -105,17 +108,17 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
                     debugPrint('your code is ${controller.text}');
                   },
                 ),
-                SizedBox(
-                  height: h / 6,
-                ),
-                InkWell(
-                    onTap: () {
-                      print('You clicked');
-                    },
-                    child: Text(
-                      'Forgot your pin?',
-                      style: TextStyle(fontSize: 16, fontFamily: 'Jost'),
-                    ))
+
+                TextButton(
+                  onPressed: () {
+                    Get.to(RecoveryScreen());
+                    print('You clicked');
+                  },
+                  child: Text(
+                    'Forgot your pin?',
+                    style: TextStyle(fontSize: 16, fontFamily: 'Jost'),
+                  ),
+                )
               ],
             ),
           ),
