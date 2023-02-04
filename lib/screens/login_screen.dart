@@ -25,6 +25,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final usernameController = TextEditingController();
 
   final passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  String? _email, _password;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +69,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const SizedBox(height: 225),
                 MainTexfield(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  onSaved: (input) => _email = input,
                   keyboardType: TextInputType.emailAddress,
                   controller: usernameController,
                   labelText: 'Email',
@@ -78,6 +87,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 // password
 
                 MainTexfield(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  onSaved: (input) => _password = input,
                   keyboardType: TextInputType.visiblePassword,
                   controller: passwordController,
                   labelText: 'Password',
@@ -107,5 +123,12 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void _submit() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      print('Email: $_email, Password: $_password');
+    }
   }
 }

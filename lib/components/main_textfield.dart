@@ -7,6 +7,8 @@ class MainTexfield extends StatelessWidget {
   final bool obscureText;
   final TextInputType keyboardType;
   final Widget? suffixIcon;
+  final String? Function(String?) validator;
+  final Function(String?) onSaved;
 
   const MainTexfield(
       {super.key,
@@ -14,13 +16,17 @@ class MainTexfield extends StatelessWidget {
       required this.labelText,
       required this.obscureText,
       required this.keyboardType,
+      required this.validator,
+      required this.onSaved,
       this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
+        onSaved: onSaved,
         controller: controller,
         obscureText: obscureText,
         keyboardType: keyboardType,

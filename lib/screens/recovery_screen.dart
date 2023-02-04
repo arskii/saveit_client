@@ -16,6 +16,8 @@ class RecoveryScreen extends StatefulWidget {
 
 class _RecoveryScreenState extends State<RecoveryScreen> {
   final emailController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  String? _email;
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -65,6 +67,13 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
                   height: 30,
                 ),
                 MainTexfield(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  onSaved: (input) => _email = input,
                   keyboardType: TextInputType.emailAddress,
                   obscureText: false,
                   labelText: 'Email',
@@ -81,5 +90,12 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
         ),
       ),
     );
+  }
+
+  void _submit() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      print('Email: $_email');
+    }
   }
 }
