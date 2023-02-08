@@ -1,3 +1,4 @@
+import 'package:budgetapp/api/api_client.dart';
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/main_textfield.dart';
 import 'package:budgetapp/screens/login_screen.dart';
@@ -5,6 +6,7 @@ import 'package:budgetapp/screens/verify_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 
 import '../components/social_button.dart';
 import '../constants.dart';
@@ -257,10 +259,30 @@ class _SignUPState extends State<SignUP> {
     });
   }
 
-  void _submit() {
+  void _submit() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text(
+          'processing data',
+        ),
+        backgroundColor: Colors.green.shade300,
+      ));
+      Map<String, dynamic> datauser = {'email': _email, 'password': _password};
+      dynamic res = await ApiClient().registerUser(datauser);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar;
       print('Email: $_email, Password: $_password');
+      //if (res['ErrorCode'] == null)
+      // {
+      //   Get.to(LoginScreen());
+      // }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error: ${['Message']}'),
+          backgroundColor: Colors.red.shade300,
+        ),
+      );
     }
   }
 }
