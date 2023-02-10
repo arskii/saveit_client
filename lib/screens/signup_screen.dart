@@ -229,8 +229,8 @@ class _SignUPState extends State<SignUP> {
                       ),
                       TextButton(
                         onPressed: () {
-                          // Get.to(LoginScreen());
-                          _submit;
+                          Get.to(LoginScreen());
+                          // _submit;
                         },
                         child: Text(
                           'Login',

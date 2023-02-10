@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:budgetapp/api/api_client.dart';
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/pincode_numpud.dart';
 import 'package:budgetapp/main.dart';
@@ -75,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     }
                     return null;
                   },
-                  onSaved: (input) => _email = input,
+                  onSaved: (input) => _email = input!,
                   keyboardType: TextInputType.emailAddress,
                   controller: usernameController,
                   labelText: 'Email',
@@ -93,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     }
                     return null;
                   },
-                  onSaved: (input) => _password = input,
+                  onSaved: (input) => _password = input!,
                   keyboardType: TextInputType.visiblePassword,
                   controller: passwordController,
                   labelText: 'Password',
@@ -114,7 +115,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(fontFamily: 'Jost', fontSize: 16.0),
                 ),
                 MainButton(
-                  onTap: () => Get.to(PinCodeScreen()),
+                  onTap: () {
+                    _submit();
+                    //Get.to(PinCodeScreen());
+                  },
                   text: 'Log in',
                 )
               ],
@@ -125,10 +129,30 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _submit() {
+  void _submit() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text(
+          'processing data',
+        ),
+        backgroundColor: Colors.green.shade300,
+      ));
+      Map<String, dynamic> datauser = {'email': _email, 'password': _password};
+      dynamic res = await ApiClient().login(datauser);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar;
       print('Email: $_email, Password: $_password');
+      //if (res['ErrorCode'] == null)
+      // {
+      //   Get.to(LoginScreen());
+      // }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error: ${['Message']}'),
+          backgroundColor: Colors.red.shade300,
+        ),
+      );
     }
   }
 }
