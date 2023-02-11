@@ -1,8 +1,9 @@
+import 'package:budgetapp/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class MainTexfield extends StatelessWidget {
-  final controller;
+  final TextEditingController controller;
   final String labelText;
   final bool obscureText;
   final TextInputType keyboardType;
@@ -31,9 +32,28 @@ class MainTexfield extends StatelessWidget {
         obscureText: obscureText,
         keyboardType: keyboardType,
         decoration: InputDecoration(
+          alignLabelWithHint: true,
           suffixIcon: suffixIcon,
           labelStyle: TextStyle(fontSize: 20),
           floatingLabelBehavior: FloatingLabelBehavior.always,
+          focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                width: 0,
+                style: BorderStyle.none,
+              )),
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                width: 0,
+                style: BorderStyle.none,
+              )),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                width: 0,
+                style: BorderStyle.none,
+              )),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(
@@ -43,7 +63,9 @@ class MainTexfield extends StatelessWidget {
           fillColor: Colors.white,
           filled: true,
           labelText: labelText,
-          hintStyle: TextStyle(color: Colors.grey[500]),
+        ),
+        style: TextStyle(
+          fontFamily: 'Jost',
         ),
       ),
     );

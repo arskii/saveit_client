@@ -1,5 +1,6 @@
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/main_textfield.dart';
+import 'package:budgetapp/components/title_screen.dart';
 import 'package:budgetapp/constants.dart';
 import 'package:budgetapp/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -41,22 +42,11 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
                 SizedBox(
                   height: 70,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icons/pig.svg',
-                    ),
-                    Text(
-                      'Recovery',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
-                  ],
-                ),
+                TitleScreen(title: 'Recovery'),
                 SizedBox(
                   height: 150,
                 ),
-                Text(
+                const Text(
                   'We\'ll send you an email with a recovery code',
                   style: TextStyle(
                     fontSize: 16,

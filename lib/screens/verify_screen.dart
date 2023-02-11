@@ -1,3 +1,4 @@
+import 'package:budgetapp/components/title_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -37,18 +38,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                 SizedBox(
                   height: 80,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icons/pig.svg',
-                    ),
-                    Text(
-                      'Verify your email',
-                      style: TextStyle(color: Colors.black, fontSize: 35),
-                    ),
-                  ],
-                ),
+                TitleScreen(title: 'Verify your email'),
                 SizedBox(
                   height: 120,
                 ),

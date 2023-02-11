@@ -1,6 +1,7 @@
 import 'package:budgetapp/api/api_client.dart';
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/main_textfield.dart';
+import 'package:budgetapp/components/title_screen.dart';
 import 'package:budgetapp/screens/login_screen.dart';
 import 'package:budgetapp/screens/verify_screen.dart';
 import 'package:flutter/material.dart';
@@ -53,29 +54,13 @@ class _SignUPState extends State<SignUP> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Logo
                   const SizedBox(
                     height: 20,
                     width: 30,
                   ),
 
                   // Welcome
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset('assets/icons/pig.svg'),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Create an account',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 35,
-                        ),
-                      ),
-                    ],
-                  ),
+                  TitleScreen(title: 'Create an account'),
 
                   const SizedBox(
                     height: 40,
@@ -120,12 +105,11 @@ class _SignUPState extends State<SignUP> {
                       var passNonNullValue = value ?? "";
                       if (value!.isEmpty) {
                         return ("Password is required");
-                      } else if (passNonNullValue.length < 6) {
-                        return ("Password Must be more than 5 characters");
+                      } else if (passNonNullValue.length < 7) {
+                        return ("Password Must be more than 6 characters");
                       } else if (!regex.hasMatch(passNonNullValue)) {
                         return ("Password should contain upper,lower,digit and Special character ");
                       }
-                      return null;
                       return null;
                     },
                     onSaved: (input) => _password = input!,

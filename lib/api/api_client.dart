@@ -26,4 +26,35 @@ class ApiClient {
       return e.message;
     }
   }
+
+  Future<Response> getUserProfileData() async {
+    try {
+      Response response = await _dio.get(
+        'https://reqres.in/api/login',
+        queryParameters: {'apikey': 'YOUR_API_KEY'},
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer ${0}',
+          },
+        ),
+      );
+      return response.data;
+    } on DioError catch (e) {
+      return e.response!.data;
+    }
+  }
+
+  Future<Response> logout() async {
+    try {
+      Response response = await _dio.get(
+        'https://reqres.in/api/login',
+        options: Options(
+          headers: {'Authorization': 'Bearer ${0}'},
+        ),
+      );
+      return response.data;
+    } on DioError catch (e) {
+      return e.response!.data;
+    }
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:budgetapp/components/title_screen.dart';
 import 'package:budgetapp/screens/recovery_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -49,22 +50,7 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Welcome
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset('assets/icons/pig.svg'),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Pin Code',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 35,
-                      ),
-                    ),
-                  ],
-                ),
+                TitleScreen(title: 'Pin Code'),
 
                 SizedBox(height: 25),
 
