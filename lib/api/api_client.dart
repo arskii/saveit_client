@@ -17,8 +17,8 @@ class ApiClient {
 
   Future login(Map<String, dynamic>? datauser) async {
     try {
-      Response response =
-          await _dio.post('https://reqres.in/api/login', data: datauser);
+      Response response = await _dio
+          .post('http://192.168.1.146:3000/auth/login', data: datauser);
       print(response.data);
       return response.data;
     } on DioError catch (e) {

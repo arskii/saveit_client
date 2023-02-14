@@ -1,4 +1,6 @@
 import 'package:budgetapp/components/bottom_menu.dart';
+import 'package:budgetapp/constants.dart';
+import 'package:budgetapp/screens/entities_screen.dart';
 import 'package:budgetapp/screens/expenses_screen/expenses_screen.dart';
 import 'package:budgetapp/screens/login_screen.dart';
 import 'package:budgetapp/screens/pincode_screen.dart';
@@ -22,10 +24,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, // remove debug flag
       title: 'Budget app',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
         fontFamily: 'BebasNeue',
       ),
-      home: LoginScreen(),
+      home: EntitiesScreen(),
     );
   }
 }

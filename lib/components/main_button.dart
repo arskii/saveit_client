@@ -19,7 +19,7 @@ class MainButton extends StatelessWidget {
       onTap: () => onTap(),
       child: Container(
         margin: EdgeInsets.all(30),
-        padding: EdgeInsets.symmetric(horizontal: 130, vertical: 20),
+        padding: EdgeInsets.symmetric(vertical: 20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
