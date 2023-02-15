@@ -1,5 +1,6 @@
 import 'package:budgetapp/components/bottom_menu.dart';
 import 'package:budgetapp/constants.dart';
+import 'package:budgetapp/screens/add_entries.dart';
 import 'package:budgetapp/screens/entities_screen.dart';
 import 'package:budgetapp/screens/expenses_screen/expenses_screen.dart';
 import 'package:budgetapp/screens/login_screen.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         fontFamily: 'BebasNeue',
       ),
-      home: EntitiesScreen(),
+      home: AddEntriesScreen(),
     );
   }
 }

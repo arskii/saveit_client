@@ -83,7 +83,10 @@ class _EntitiesScreenState extends State<EntitiesScreen> {
                     textTitle: 'Apple.de',
                     textDesc: '14.02.2023',
                     textPrice: '\$1200'),
-                MainButton(text: 'Add Entries', onTap: () {})
+                MainButton(
+                  text: 'Add Entries',
+                  onTap: () {},
+                )
               ],
             ),
           ),
