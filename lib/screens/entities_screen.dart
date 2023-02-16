@@ -32,60 +32,78 @@ class _EntitiesScreenState extends State<EntitiesScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
                     ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              'all',
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.black),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Receive',
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.black),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Sent',
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.black),
+                            ),
+                          ),
+                        ]),
+                    height: 50,
                   ),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'all',
-                            style: TextStyle(fontSize: 17, color: Colors.black),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Receive',
-                            style: TextStyle(fontSize: 17, color: Colors.black),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Sent',
-                            style: TextStyle(fontSize: 17, color: Colors.black),
-                          ),
-                        ),
-                      ]),
-                  height: 50,
                 ),
-                EntityCard(
-                    textTitle: 'Apple.de',
-                    textDesc: '14.02.2023',
-                    textPrice: '\$1200'),
-                EntityCard(
-                    textTitle: 'Apple.de',
-                    textDesc: '14.02.2023',
-                    textPrice: '\$1200'),
-                EntityCard(
-                    textTitle: 'Apple.de',
-                    textDesc: '14.02.2023',
-                    textPrice: '\$1200'),
-                EntityCard(
-                    textTitle: 'Apple.de',
-                    textDesc: '14.02.2023',
-                    textPrice: '\$1200'),
-                MainButton(
-                  text: 'Add Entries',
-                  onTap: () {},
+                Expanded(
+                  flex: 7,
+                  child: ListView(children: [
+                    EntityCard(
+                        textTitle: 'Apple.de',
+                        textDesc: '14.02.2023',
+                        textPrice: '\$1200'),
+                    EntityCard(
+                        textTitle: 'Apple.de',
+                        textDesc: '14.02.2023',
+                        textPrice: '\$1200'),
+                    EntityCard(
+                        textTitle: 'Apple.de',
+                        textDesc: '14.02.2023',
+                        textPrice: '\$1200'),
+                    EntityCard(
+                        textTitle: 'Apple.de',
+                        textDesc: '14.02.2023',
+                        textPrice: '\$1200'),
+                    EntityCard(
+                        textTitle: 'Apple.de',
+                        textDesc: '14.02.2023',
+                        textPrice: '\$1200'),
+                  ]),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: MainButton(
+                    text: 'Add Entries',
+                    onTap: () {},
+                  ),
                 )
               ],
             ),

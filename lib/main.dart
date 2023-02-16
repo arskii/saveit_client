@@ -6,6 +6,7 @@ import 'package:budgetapp/screens/expenses_screen/expenses_screen.dart';
 import 'package:budgetapp/screens/login_screen.dart';
 import 'package:budgetapp/screens/pincode_screen.dart';
 import 'package:budgetapp/screens/recovery_screen.dart';
+import 'package:budgetapp/screens/reminders_screen.dart';
 import 'package:budgetapp/screens/signup_screen.dart';
 import 'package:budgetapp/screens/verify_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         fontFamily: 'BebasNeue',
       ),
-      home: AddEntriesScreen(),
+      home: RemindersScreen(),
     );
   }
 }

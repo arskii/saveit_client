@@ -18,8 +18,8 @@ class MainButton extends StatelessWidget {
     return InkWell(
       onTap: () => onTap(),
       child: Container(
-        margin: EdgeInsets.all(30),
-        padding: EdgeInsets.symmetric(vertical: 20),
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+        padding: EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
