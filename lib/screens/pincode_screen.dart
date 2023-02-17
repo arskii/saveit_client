@@ -53,14 +53,15 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
                 Expanded(flex: 1, child: TitleScreen(title: 'Pin Code')),
 
                 Expanded(
+                  flex: 1,
                   child: Padding(
                     padding: EdgeInsets.all(20),
                     child: SizedBox(
                       width: 270,
-                      height: 70,
+                      height: 80,
                       child: PinCodeFields(
                         focusNode: focusNode,
-                        fieldHeight: 50,
+                        fieldHeight: 70,
                         fieldWidth: 45,
                         fieldBorderStyle: FieldBorderStyle.bottom,
                         keyboardType: TextInputType.none,
