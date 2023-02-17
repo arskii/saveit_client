@@ -1,8 +1,11 @@
-import 'package:budgetapp/api/api_client.dart';
-import 'package:budgetapp/components/main_button.dart';
-import 'package:budgetapp/screens/recovery_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:budgetapp/api/api_client.dart';
+import 'package:budgetapp/components/main_button.dart';
+import 'package:budgetapp/screens/pincode_screen.dart';
+import 'package:budgetapp/screens/recovery_screen.dart';
+import 'package:get/get_connect/http/src/status/http_status.dart';
 
 import '../components/main_textfield.dart';
 import '../components/title_screen.dart';
@@ -46,74 +49,82 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Form(
               key: _formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TitleScreen(title: 'Welcome back'),
-
-                  const SizedBox(height: 80),
-                  MainTexfield(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter email';
-                      }
-                      return null;
-                    },
-                    onSaved: (input) => _email = input!,
-                    keyboardType: TextInputType.emailAddress,
-                    controller: usernameController,
-                    labelText: 'Email',
-                    obscureText: false,
-                  ),
-
-                  const SizedBox(height: 17),
-
-                  // password
-
-                  MainTexfield(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter password';
-                      }
-                      return null;
-                    },
-                    onSaved: (input) => _password = input!,
-                    keyboardType: TextInputType.visiblePassword,
-                    controller: passwordController,
-                    labelText: 'Password',
-                    obscureText: true,
-                    suffixIcon: InkWell(
-                      onTap: _togglePasswordView,
-                      child: Align(
-                        widthFactor: 1.0,
-                        heightFactor: 1.0,
-                        child: Icon(
-                          Icons.remove_red_eye,
+                  Expanded(flex: 2, child: TitleScreen(title: 'Welcome back')),
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      children: [
+                        MainTexfield(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter email';
+                            }
+                            return null;
+                          },
+                          onSaved: (input) => _email = input!,
+                          keyboardType: TextInputType.emailAddress,
+                          controller: usernameController,
+                          labelText: 'Email',
+                          obscureText: false,
                         ),
-                      ),
+
+                        const SizedBox(height: 20),
+
+                        // password
+
+                        MainTexfield(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter password';
+                            }
+                            return null;
+                          },
+                          onSaved: (input) => _password = input!,
+                          keyboardType: TextInputType.visiblePassword,
+                          controller: passwordController,
+                          labelText: 'Password',
+                          obscureText: isHidden,
+                          suffixIcon: InkWell(
+                            onTap: _togglePasswordView,
+                            child: Align(
+                              widthFactor: 1.0,
+                              heightFactor: 1.0,
+                              child: Icon(
+                                color: Colors.black,
+                                Icons.remove_red_eye,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Get.to(RecoveryScreen());
-                    },
-                    child: Text(
-                      'Forgot your password?',
-                      style: TextStyle(
-                          fontFamily: 'Jost',
-                          fontSize: 18.0,
-                          color: Colors.black),
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Get.to(RecoveryScreen());
+                          },
+                          child: Text(
+                            'Forgot your password?',
+                            style: TextStyle(
+                                fontFamily: 'Jost',
+                                fontSize: 18.0,
+                                color: Colors.black),
+                          ),
+                        ),
+                        MainButton(
+                          onTap: () {
+                            _submit();
+                          },
+                          text: 'Log in',
+                        )
+                      ],
                     ),
                   ),
-                  MainButton(
-                    onTap: () {
-                      _submit();
-                    },
-                    text: 'Log in',
-                  )
                 ],
               ),
             ),
@@ -132,31 +143,21 @@ class _LoginScreenState extends State<LoginScreen> {
   void _submit() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text(
-          'Processing data',
-          textAlign: TextAlign.center,
-        ),
-        backgroundColor: Colors.green.shade300,
-      ));
-      Map<String, dynamic> datauser = {'email': _email, 'password': _password};
+      Map<String, dynamic> datauser = {
+        'username': _email,
+        'password': _password
+      };
       dynamic res = await ApiClient().login(datauser);
-      ScaffoldMessenger.of(context).hideCurrentSnackBar;
       print('Email: $_email, Password: $_password');
-      //if (res['ErrorCode'] == null)
-      // {
-      //   Get.to(LoginScreen());
-      // }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Email or password does not match',
-            textAlign: TextAlign.center,
-          ),
+      if (res['detail'] == null) {
+        Get.off(() => PinCodeScreen());
+      } else {
+        //if error is present, display a snackbar showing the error messsage
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('${res['detail']}'),
           backgroundColor: Colors.red.shade300,
-        ),
-      );
+        ));
+      }
     }
   }
 }

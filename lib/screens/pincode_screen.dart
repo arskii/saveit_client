@@ -50,34 +50,35 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Welcome
-                TitleScreen(title: 'Pin Code'),
+                Expanded(flex: 1, child: TitleScreen(title: 'Pin Code')),
 
-                SizedBox(height: 25),
-
-                Padding(
-                  padding: EdgeInsets.all(20),
-                  child: SizedBox(
-                    width: 270,
-                    height: 70,
-                    child: PinCodeFields(
-                      focusNode: focusNode,
-                      fieldHeight: 50,
-                      fieldWidth: 45,
-                      fieldBorderStyle: FieldBorderStyle.bottom,
-                      keyboardType: TextInputType.none,
-                      borderWidth: 2,
-                      borderColor: Colors.white,
-                      activeBorderColor: Color(0xFF1FAB89),
-                      textStyle: TextStyle(fontSize: 25),
-                      length: 4,
-                      controller: controller,
-                      animation: Animations.slideInDown,
-                      onComplete: (output) {
-                        print(output);
-                      },
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(20),
+                    child: SizedBox(
+                      width: 270,
+                      height: 70,
+                      child: PinCodeFields(
+                        focusNode: focusNode,
+                        fieldHeight: 50,
+                        fieldWidth: 45,
+                        fieldBorderStyle: FieldBorderStyle.bottom,
+                        keyboardType: TextInputType.none,
+                        borderWidth: 2,
+                        borderColor: Colors.white,
+                        activeBorderColor: Color(0xFF1FAB89),
+                        textStyle: TextStyle(fontSize: 25),
+                        length: 4,
+                        controller: controller,
+                        animation: Animations.slideInDown,
+                        onComplete: (output) {
+                          print(output);
+                        },
+                      ),
                     ),
                   ),
                 ),
+
                 PinCode(
                   buttonSize: 80,
                   buttonColor: Colors.white,
@@ -95,14 +96,20 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
                   },
                 ),
 
-                TextButton(
-                  onPressed: () {
-                    Get.to(RecoveryScreen());
-                    print('You clicked');
-                  },
-                  child: Text(
-                    'Forgot your pin?',
-                    style: TextStyle(fontSize: 16, fontFamily: 'Jost'),
+                Expanded(
+                  flex: 1,
+                  child: TextButton(
+                    onPressed: () {
+                      Get.to(() => RecoveryScreen());
+                      print('You clicked');
+                    },
+                    child: Text(
+                      'Forgot your pin?',
+                      style: TextStyle(
+                          fontSize: 17,
+                          fontFamily: 'Jost',
+                          color: Colors.black),
+                    ),
                   ),
                 )
               ],

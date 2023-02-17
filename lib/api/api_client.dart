@@ -18,12 +18,18 @@ class ApiClient {
   Future login(Map<String, dynamic>? datauser) async {
     try {
       Response response = await _dio
-          .post('http://192.168.1.146:3000/auth/login', data: datauser);
+          .post('http://10.0.2.2:8000/api/auth/login/', data: datauser);
       print(response.data);
+      print(response.statusCode);
       return response.data;
     } on DioError catch (e) {
-      print(e.message);
-      return e.message;
+      if (e.response != null) {
+        print(e.response!.data);
+        return e.response!.data;
+      } else {
+        // Something happened in setting up or sending the request that triggered an Error
+        print(e.message);
+      }
     }
   }
 
@@ -31,7 +37,6 @@ class ApiClient {
     try {
       Response response = await _dio.get(
         'https://reqres.in/api/login',
-        queryParameters: {'apikey': 'YOUR_API_KEY'},
         options: Options(
           headers: {
             'Authorization': 'Bearer ${0}',

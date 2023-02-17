@@ -33,7 +33,7 @@ class _RemindersScreenState extends State<RemindersScreen> {
             child: Column(
               children: [
                 Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Center(
                     child: Text(
                       'Reminders',
@@ -44,7 +44,7 @@ class _RemindersScreenState extends State<RemindersScreen> {
                   ),
                 ),
                 Expanded(
-                  flex: 7,
+                  flex: 10,
                   child: ListView(
                     children: [
                       RemindersCard(
@@ -86,7 +86,7 @@ class _RemindersScreenState extends State<RemindersScreen> {
                   ),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Align(
                     child: MainButton(text: 'Add', onTap: () {}),
                     alignment: Alignment.bottomCenter,

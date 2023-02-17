@@ -14,8 +14,8 @@ class RemindersCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      margin: EdgeInsets.only(left: 30, right: 30, bottom: 20),
+      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(
@@ -37,6 +37,7 @@ class RemindersCard extends StatelessWidget {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(textTitle,
                   style: TextStyle(fontSize: 15, fontFamily: 'Jost')),
@@ -48,8 +49,10 @@ class RemindersCard extends StatelessWidget {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SvgPicture.asset('assets/icons/dots.svg'),
+              InkWell(child: SvgPicture.asset('assets/icons/dots.svg')),
+              SizedBox(height: 30),
               Text(linkDue, style: TextStyle(fontSize: 15, fontFamily: 'Jost'))
             ],
           )

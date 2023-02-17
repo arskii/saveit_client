@@ -49,7 +49,7 @@ class _AuthScreenState extends State<AuthScreen> {
               SizedBox(height: 50),
               MainButton(
                 onTap: () {
-                  Get.to(SignUP());
+                  Get.to(() => SignUpScreen());
                 },
                 text: 'Sign Up',
               ),

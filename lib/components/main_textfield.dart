@@ -65,6 +65,7 @@ class MainTexfield extends StatelessWidget {
           labelText: labelText,
         ),
         style: TextStyle(
+          fontSize: 18,
           fontFamily: 'Jost',
         ),
       ),

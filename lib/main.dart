@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         fontFamily: 'BebasNeue',
       ),
-      home: RemindersScreen(),
+      home: PinCodeScreen(),
     );
   }
 }

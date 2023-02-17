@@ -12,23 +12,25 @@ import 'package:http/http.dart';
 import '../components/social_button.dart';
 import '../constants.dart';
 
-class SignUP extends StatefulWidget {
-  SignUP({super.key});
+class SignUpScreen extends StatefulWidget {
+  SignUpScreen({super.key});
 
   @override
-  State<SignUP> createState() => _SignUPState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUPState extends State<SignUP> {
+class _SignUpScreenState extends State<SignUpScreen> {
   //text controlling
   final usernameController = TextEditingController();
+
+  final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
 
   final repeatPasswordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-  String? _email, _password, _returnPassword;
+  String? _username, _email, _password, _returnPassword;
 
   bool isHidden = true;
 
@@ -54,180 +56,210 @@ class _SignUPState extends State<SignUP> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 20,
-                    width: 30,
-                  ),
-
                   // Welcome
-                  TitleScreen(title: 'Create an account'),
-
-                  const SizedBox(
-                    height: 40,
+                  Expanded(
+                    flex: 1,
+                    child: TitleScreen(title: 'Create an account'),
                   ),
 
-                  // phone Textfield
-
-                  // email Textfield
-
-                  MainTexfield(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      if (value != null || value.isNotEmpty) {
-                        String pattern =
-                            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                        RegExp regex = new RegExp(pattern);
-                        return (!regex.hasMatch(value))
-                            ? 'email not valid'
-                            : null;
-                      }
-                      return null;
-                    },
-                    onSaved: (input) => _email = input!,
-                    keyboardType: TextInputType.emailAddress,
-                    controller: usernameController,
-                    labelText: 'Email',
-                    obscureText: false,
-                  ),
-
-                  const SizedBox(
-                    height: 25,
-                  ),
-
-                  // password Textfield
-
-                  MainTexfield(
-                    validator: (value) {
-                      RegExp regex = RegExp(
-                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                      var passNonNullValue = value ?? "";
-                      if (value!.isEmpty) {
-                        return ("Password is required");
-                      } else if (passNonNullValue.length < 7) {
-                        return ("Password Must be more than 6 characters");
-                      } else if (!regex.hasMatch(passNonNullValue)) {
-                        return ("Password should contain upper,lower,digit and Special character ");
-                      }
-                      return null;
-                    },
-                    onSaved: (input) => _password = input!,
-                    controller: passwordController,
-                    labelText: 'Password',
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: isHidden,
-                    suffixIcon: InkWell(
-                      onTap: _togglePasswordView,
-                      child: Align(
-                        widthFactor: 1.0,
-                        heightFactor: 1.0,
-                        child: Icon(
-                          Icons.remove_red_eye,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(
-                    height: 25,
-                  ),
-
-                  // repeat password
-                  MainTexfield(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
-                    onSaved: (input) => _returnPassword = input!,
-                    keyboardType: TextInputType.visiblePassword,
-                    controller: repeatPasswordController,
-                    labelText: 'Confirm Password',
-                    obscureText: isHidden,
-                    suffixIcon: InkWell(
-                      onTap: _togglePasswordView,
-                      child: Align(
-                        widthFactor: 1.0,
-                        heightFactor: 1.0,
-                        child: Icon(
-                          Icons.remove_red_eye,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(
-                    height: 25,
-                  ),
-
-                  // or continue with
-                  Text(
-                    'Or sign in with',
-                    style: TextStyle(fontSize: 20.0),
-                  ),
-                  SizedBox(
-                    height: 22,
-                  ),
-
-                  // sign Up button
-                  SizedBox(
-                    width: 350,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SocialButton(
-                            onTap: () {},
-                            icon: SvgPicture.asset('assets/icons/google.svg')),
-                        SocialButton(
-                          onTap: () {},
-                          icon: SvgPicture.asset('assets/icons/facebook.svg'),
-                        )
+                        MainTexfield(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return '* Required';
+                            } else if (value.length < 4) {
+                              return "Username should be at least 4 characters";
+                            } else if (value.length > 30) {
+                              return "Username should not be greater than 30 characters";
+                            } else
+                              return null;
+                          },
+                          onSaved: (input) => _username = input!,
+                          keyboardType: TextInputType.text,
+                          controller: usernameController,
+                          labelText: 'Username',
+                          obscureText: false,
+                        ),
+
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        MainTexfield(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            if (value != null || value.isNotEmpty) {
+                              String pattern =
+                                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                              RegExp regex = new RegExp(pattern);
+                              return (!regex.hasMatch(value))
+                                  ? 'email not valid'
+                                  : null;
+                            }
+                            return null;
+                          },
+                          onSaved: (input) => _email = input!,
+                          keyboardType: TextInputType.emailAddress,
+                          controller: emailController,
+                          labelText: 'Email',
+                          obscureText: false,
+                        ),
+
+                        const SizedBox(
+                          height: 20,
+                        ),
+
+                        // password Textfield
+
+                        MainTexfield(
+                          validator: (value) {
+                            RegExp regex = RegExp(
+                                r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                            var passNonNullValue = value ?? "";
+                            if (value!.isEmpty) {
+                              return ("Password is required");
+                            } else if (passNonNullValue.length < 7) {
+                              return ("Password Must be more than 6 characters");
+                            } else if (!regex.hasMatch(passNonNullValue)) {
+                              return ("Password should contain upper,lower,digit and Special character ");
+                            }
+                            return null;
+                          },
+                          onSaved: (input) => _password = input!,
+                          controller: passwordController,
+                          labelText: 'Password',
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: isHidden,
+                          suffixIcon: InkWell(
+                            onTap: _togglePasswordView,
+                            child: Align(
+                              widthFactor: 1.0,
+                              heightFactor: 1.0,
+                              child: Icon(
+                                Icons.remove_red_eye,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(
+                          height: 20,
+                        ),
+
+                        // repeat password
+                        MainTexfield(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onSaved: (input) => _returnPassword = input!,
+                          keyboardType: TextInputType.visiblePassword,
+                          controller: repeatPasswordController,
+                          labelText: 'Confirm Password',
+                          obscureText: isHidden,
+                          suffixIcon: InkWell(
+                            onTap: _togglePasswordView,
+                            child: Align(
+                              widthFactor: 1.0,
+                              heightFactor: 1.0,
+                              child: Icon(
+                                Icons.remove_red_eye,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
 
-                  Text(
-                    'By clicking SIGN UP you agree to the following Terms and Conditions',
-                    style: TextStyle(fontSize: 15),
-                  ),
+                  // or continue with
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Or sign in with',
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                        SizedBox(
+                          height: 22,
+                        ),
 
-                  MainButton(
-                    onTap: () {
-                      // Get.to(VerifyScreen());
-                      _submit();
-                    },
-                    text: 'Sign up',
+                        // sign Up button
+                        SizedBox(
+                          width: 350,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SocialButton(
+                                  onTap: () {},
+                                  icon: SvgPicture.asset(
+                                      'assets/icons/google.svg')),
+                              SocialButton(
+                                onTap: () {},
+                                icon: SvgPicture.asset(
+                                    'assets/icons/facebook.svg'),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      children: [
+                        Text(
+                          'By clicking SIGN UP you agree to the following Terms and Conditions',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        MainButton(
+                          onTap: () {
+                            // Get.to(VerifyScreen());
+                            _submit();
+                          },
+                          text: 'Sign up',
+                        ),
+                      ],
+                    ),
                   ),
 
                   // google + apple signup
 
                   // forgot password
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Already have an account?",
-                        style: TextStyle(fontFamily: 'Jost', fontSize: 20),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Get.to(LoginScreen());
-                          // _submit;
-                        },
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            fontFamily: 'Jost',
-                            color: accentColor,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Text(
+                  //       "Already have an account?",
+                  //       style: TextStyle(fontFamily: 'Jost', fontSize: 20),
+                  //     ),
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         Get.to(LoginScreen());
+                  //         // _submit;
+                  //       },
+                  //       child: Text(
+                  //         'Login',
+                  //         style: TextStyle(
+                  //           fontFamily: 'Jost',
+                  //           color: accentColor,
+                  //           fontSize: 20,
+                  //           fontWeight: FontWeight.w800,
+                  //         ),
+                  //       ),
+                  //     )
+                  //   ],
+                  // ),
                 ],
               ),
             ),
@@ -252,10 +284,14 @@ class _SignUPState extends State<SignUP> {
         ),
         backgroundColor: Colors.green.shade300,
       ));
-      Map<String, dynamic> datauser = {'email': _email, 'password': _password};
+      Map<String, dynamic> datauser = {
+        'username': _username,
+        'email': _email,
+        'password': _password
+      };
       dynamic res = await ApiClient().registerUser(datauser);
       ScaffoldMessenger.of(context).hideCurrentSnackBar;
-      print('Email: $_email, Password: $_password');
+      print('Username: $_username, Email: $_email, Password: $_password');
       //if (res['ErrorCode'] == null)
       // {
       //   Get.to(LoginScreen());
