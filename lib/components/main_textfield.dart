@@ -1,6 +1,4 @@
-import 'package:budgetapp/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class MainTexfield extends StatelessWidget {
   final TextEditingController controller;
@@ -25,49 +23,55 @@ class MainTexfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: TextFormField(
-        validator: validator,
-        onSaved: onSaved,
-        controller: controller,
-        obscureText: obscureText,
-        keyboardType: keyboardType,
-        decoration: InputDecoration(
-          alignLabelWithHint: true,
-          suffixIcon: suffixIcon,
-          labelStyle: TextStyle(fontSize: 20),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                width: 0,
-                style: BorderStyle.none,
-              )),
-          errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                width: 0,
-                style: BorderStyle.none,
-              )),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                width: 0,
-                style: BorderStyle.none,
-              )),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                width: 0,
-                style: BorderStyle.none,
-              )),
-          fillColor: Colors.white,
-          filled: true,
-          labelText: labelText,
-        ),
-        style: TextStyle(
-          fontSize: 18,
-          fontFamily: 'Jost',
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(labelText, style: const TextStyle(fontSize: 20)),
+          const SizedBox(height: 5),
+          TextFormField(
+            validator: validator,
+            onSaved: onSaved,
+            controller: controller,
+            obscureText: obscureText,
+            keyboardType: keyboardType,
+            decoration: InputDecoration(
+              alignLabelWithHint: true,
+              suffixIcon: suffixIcon,
+              labelStyle: const TextStyle(fontSize: 20),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  )),
+              errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  )),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  )),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  )),
+              fillColor: Colors.white,
+              filled: true,
+            ),
+            style: const TextStyle(
+              fontSize: 18,
+              fontFamily: 'Jost',
+            ),
+          ),
+        ],
       ),
     );
   }

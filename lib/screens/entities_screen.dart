@@ -10,6 +10,51 @@ class EntitiesScreen extends StatefulWidget {
   State<EntitiesScreen> createState() => _EntitiesScreenState();
 }
 
+final List entity = [
+  {
+    'imageLink': 'assets/cigun.jpg',
+    'textTitle': 'Apple.de',
+    'textDesc': '14.02.2023',
+    'textPrice': '\$1200'
+  },
+  {
+    'imageLink': 'assets/cigun.jpg',
+    'textTitle': 'Apple.de',
+    'textDesc': '14.02.2023',
+    'textPrice': '\$1200'
+  },
+  {
+    'imageLink': 'assets/cigun.jpg',
+    'textTitle': 'Apple.de',
+    'textDesc': '14.02.2023',
+    'textPrice': '\$1200'
+  },
+  {
+    'imageLink': 'assets/cigun.jpg',
+    'textTitle': 'Apple.de',
+    'textDesc': '14.02.2023',
+    'textPrice': '\$1200'
+  },
+  {
+    'imageLink': 'assets/cigun.jpg',
+    'textTitle': 'Apple.de',
+    'textDesc': '14.02.2023',
+    'textPrice': '\$1200'
+  },
+  {
+    'imageLink': 'assets/cigun.jpg',
+    'textTitle': 'Apple.de',
+    'textDesc': '14.02.2023',
+    'textPrice': '\$1200'
+  },
+  {
+    'imageLink': 'assets/cigun.jpg',
+    'textTitle': 'Apple.de',
+    'textDesc': '14.02.2023',
+    'textPrice': '\$1200'
+  },
+];
+
 class _EntitiesScreenState extends State<EntitiesScreen> {
   @override
   Widget build(BuildContext context) {
@@ -32,71 +77,20 @@ class _EntitiesScreenState extends State<EntitiesScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                const Expanded(flex: 1, child: EntityNav()),
                 Expanded(
-                  flex: 1,
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                    ),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              'all',
-                              style:
-                                  TextStyle(fontSize: 17, color: Colors.black),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Receive',
-                              style:
-                                  TextStyle(fontSize: 17, color: Colors.black),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Sent',
-                              style:
-                                  TextStyle(fontSize: 17, color: Colors.black),
-                            ),
-                          ),
-                        ]),
-                    height: 50,
-                  ),
-                ),
-                Expanded(
-                  flex: 7,
-                  child: ListView(children: [
-                    EntityCard(
-                        textTitle: 'Apple.de',
-                        textDesc: '14.02.2023',
-                        textPrice: '\$1200'),
-                    EntityCard(
-                        textTitle: 'Apple.de',
-                        textDesc: '14.02.2023',
-                        textPrice: '\$1200'),
-                    EntityCard(
-                        textTitle: 'Apple.de',
-                        textDesc: '14.02.2023',
-                        textPrice: '\$1200'),
-                    EntityCard(
-                        textTitle: 'Apple.de',
-                        textDesc: '14.02.2023',
-                        textPrice: '\$1200'),
-                    EntityCard(
-                        textTitle: 'Apple.de',
-                        textDesc: '14.02.2023',
-                        textPrice: '\$1200'),
-                  ]),
+                  flex: 6,
+                  child: ListView.builder(
+                      itemCount: entity.length,
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        return EntityCard(
+                          imageLink: entity[index]['imageLink'],
+                          textTitle: entity[index]['textTitle'],
+                          textDesc: entity[index]['textDesc'],
+                          textPrice: entity[index]['textPrice'],
+                        );
+                      }),
                 ),
                 Expanded(
                   flex: 1,
@@ -109,6 +103,50 @@ class _EntitiesScreenState extends State<EntitiesScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class EntityNav extends StatelessWidget {
+  const EntityNav({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          TextButton(
+            onPressed: () {},
+            child: const Text(
+              'all',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            ),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: const Text(
+              'Receive',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            ),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: const Text(
+              'Sent',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            ),
+          ),
+        ],
       ),
     );
   }

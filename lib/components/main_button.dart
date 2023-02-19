@@ -18,9 +18,9 @@ class MainButton extends StatelessWidget {
     return InkWell(
       onTap: () => onTap(),
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-        padding: EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
+        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
@@ -29,7 +29,7 @@ class MainButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(color: Colors.white, fontSize: 30),
+            style: const TextStyle(color: Colors.white, fontSize: 30),
           ),
         ),
       ),

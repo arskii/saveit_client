@@ -37,42 +37,44 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
           ),
           child: SafeArea(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: 70,
-                ),
-                TitleScreen(title: 'Recovery'),
+                Expanded(flex: 3, child: TitleScreen(title: 'Recovery')),
                 SizedBox(
                   height: 150,
                 ),
-                const Text(
-                  'We\'ll send you an email with a recovery code',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Jost',
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Text(
+                          'We\'ll send you an email with a recovery code',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'Jost',
+                          ),
+                        ),
+                        MainTexfield(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onSaved: (input) => _email = input,
+                          keyboardType: TextInputType.emailAddress,
+                          obscureText: false,
+                          labelText: 'Email',
+                          controller: emailController,
+                        ),
+                      ]),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: MainButton(
+                    onTap: () => Get.to(LoginScreen()),
+                    text: 'Send',
                   ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                MainTexfield(
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                  onSaved: (input) => _email = input,
-                  keyboardType: TextInputType.emailAddress,
-                  obscureText: false,
-                  labelText: 'Email',
-                  controller: emailController,
-                ),
-                SizedBox(height: 130),
-                MainButton(
-                  onTap: () => Get.to(LoginScreen()),
-                  text: 'Send',
                 ),
               ],
             ),

@@ -13,27 +13,32 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-          toolbarHeight: 80,
-          title: Text(
-            'profile',
-            style: TextStyle(color: Colors.black, fontSize: 35),
+        toolbarHeight: 80,
+        title: const Text(
+          'profile',
+          style: TextStyle(color: Colors.black, fontSize: 30),
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        actions: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: SvgPicture.asset('assets/icons/editIcon.svg'),
           ),
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          actions: [SvgPicture.asset('assets/icons/editIcon.svg')]),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: h,
-          decoration: BoxDecoration(
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: const [
+                colors: [
                   mainColor,
                   secondColor,
                 ]),
@@ -45,14 +50,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 3,
+                    flex: 2,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          height: 150,
-                          width: 100,
+                          height: 170,
+                          width: 110,
                           decoration: BoxDecoration(
                             image: DecorationImage(
                                 fit: BoxFit.fill,
@@ -66,68 +71,59 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Cigun Makasyan',
-                                  style: TextStyle(fontSize: 35),
-                                ),
-                                Text(
-                                  'Username',
-                                  style: TextStyle(
-                                      fontFamily: 'Jost', fontSize: 18),
-                                ),
-                                Text(
-                                  '@Cigun4ik',
-                                  style: TextStyle(fontSize: 25),
-                                ),
-                              ],
+                            Text(
+                              'Cigun Makasyan',
+                              style: TextStyle(fontSize: 35),
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Email',
-                                  style: TextStyle(
-                                      fontFamily: 'Jost', fontSize: 18),
-                                ),
-                                Text(
-                                  'kotleta.aaaa@assasin.com',
-                                  style: TextStyle(fontSize: 25),
-                                ),
-                              ],
+                            ProfileData(
+                              type_field: 'Username',
+                              info: '@Cigun4ik',
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Date of birth',
-                                  style: TextStyle(
-                                      fontFamily: 'Jost', fontSize: 18),
-                                ),
-                                Text(
-                                  '12.19.2001',
-                                  style: TextStyle(fontSize: 25),
-                                ),
-                              ],
+                            ProfileData(
+                              type_field: 'Email',
+                              info: 'kotleta.aaaa@assasin.com',
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [],
+                            ProfileData(
+                              type_field: 'Date of birth',
+                              info: '12.19.2001',
                             ),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  Expanded(flex: 3, child: SizedBox())
                 ],
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class ProfileData extends StatelessWidget {
+  final String? info;
+  final String type_field;
+  const ProfileData({super.key, required this.type_field, this.info});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          type_field,
+          style: const TextStyle(
+            fontFamily: 'Jost',
+            fontSize: 18,
+          ),
+        ),
+        Text(
+          '$info',
+          style: const TextStyle(fontSize: 22),
+        ),
+      ],
     );
   }
 }

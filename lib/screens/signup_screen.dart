@@ -166,7 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           obscureText: isHidden,
                           suffixIcon: InkWell(
                             onTap: _togglePasswordView,
-                            child: Align(
+                            child: const Align(
                               widthFactor: 1.0,
                               heightFactor: 1.0,
                               child: Icon(
@@ -185,11 +185,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Or sign in with',
                           style: TextStyle(fontSize: 20.0),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 22,
                         ),
 
@@ -218,7 +218,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     flex: 1,
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           'By clicking SIGN UP you agree to the following Terms and Conditions',
                           style: TextStyle(fontSize: 15),
                         ),
@@ -232,34 +232,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                   ),
-
-                  // google + apple signup
-
-                  // forgot password
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     Text(
-                  //       "Already have an account?",
-                  //       style: TextStyle(fontFamily: 'Jost', fontSize: 20),
-                  //     ),
-                  //     TextButton(
-                  //       onPressed: () {
-                  //         Get.to(LoginScreen());
-                  //         // _submit;
-                  //       },
-                  //       child: Text(
-                  //         'Login',
-                  //         style: TextStyle(
-                  //           fontFamily: 'Jost',
-                  //           color: accentColor,
-                  //           fontSize: 20,
-                  //           fontWeight: FontWeight.w800,
-                  //         ),
-                  //       ),
-                  //     )
-                  //   ],
-                  // ),
                 ],
               ),
             ),

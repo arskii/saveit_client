@@ -4,11 +4,13 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class EntityCard extends StatelessWidget {
+  final String imageLink;
   final String textTitle;
   final String textDesc;
   final String textPrice;
   const EntityCard(
       {super.key,
+      required this.imageLink,
       required this.textTitle,
       required this.textDesc,
       required this.textPrice});
@@ -16,7 +18,7 @@ class EntityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -25,6 +27,7 @@ class EntityCard extends StatelessWidget {
         ),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
@@ -32,12 +35,15 @@ class EntityCard extends StatelessWidget {
             width: 50,
             decoration: BoxDecoration(
               color: Colors.grey,
+              image: DecorationImage(
+                  fit: BoxFit.fill, image: AssetImage(imageLink)),
               borderRadius: BorderRadius.all(
                 Radius.circular(10),
               ),
             ),
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(textTitle,
