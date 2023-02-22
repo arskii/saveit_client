@@ -1,3 +1,4 @@
+import 'package:budgetapp/components/profile_menu.dart';
 import 'package:budgetapp/components/title_screen.dart';
 import 'package:budgetapp/constants.dart';
 import 'package:flutter/material.dart';
@@ -88,6 +89,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               info: '12.19.2001',
                             ),
                           ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        MenuProfile(
+                          data: 'dashboard',
+                          icon: Icons.apps,
+                          onTap: () {},
+                        ),
+                        MenuProfile(
+                          data: 'Statics',
+                          icon: Icons.leaderboard,
+                          onTap: () {},
+                        ),
+                        MenuProfile(
+                          data: 'Reward',
+                          icon: Icons.stars,
+                          onTap: () {},
+                        ),
+                        MenuProfile(
+                          data: 'Settings',
+                          icon: Icons.settings,
+                          onTap: () {},
+                        ),
+                        MenuProfile(
+                          data: 'Log out',
+                          icon: Icons.logout,
+                          onTap: () {},
                         ),
                       ],
                     ),
