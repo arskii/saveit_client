@@ -1,5 +1,6 @@
 import 'package:budgetapp/screens/bill_screen/bill_screen.dart';
 import 'package:budgetapp/screens/bill_screen/pages/sub_page.dart';
+import 'package:budgetapp/screens/entities_screen.dart';
 import 'package:budgetapp/screens/expenses_screen/expenses_screen.dart';
 import 'package:budgetapp/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class BottomMenu extends StatefulWidget {
 class _BottomMenuState extends State<BottomMenu> {
   int _currentIndex = 0;
   final screens = const <Widget>[
-    ExpScreen(),
+    EntitiesScreen(),
     BillScreen(),
     SubPage(),
     SettingsScreen()
@@ -31,24 +32,26 @@ class _BottomMenuState extends State<BottomMenu> {
           type: BottomNavigationBarType.fixed,
           currentIndex: _currentIndex,
           iconSize: 24,
+          backgroundColor: const Color(0x00FFFFFF),
+          elevation: 0,
           unselectedItemColor: textPrimary,
-          selectedItemColor: textActive,
+          selectedItemColor: accentColor,
           unselectedLabelStyle: const TextStyle(color: textGray),
           onTap: (value) {
             setState(() => _currentIndex = value);
           },
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/overview.svg'),
-              label: 'Overview',
+              icon: Icon(Icons.apps),
+              label: 'Dashboard',
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/calendar.svg'),
-              label: 'This month',
+              icon: Icon(Icons.leaderboard),
+              label: 'Statics',
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/ticket.svg'),
-              label: 'Offers',
+              icon: Icon(Icons.person),
+              label: 'Profile',
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset('assets/icons/setting.svg'),

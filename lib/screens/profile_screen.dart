@@ -1,6 +1,11 @@
+import 'package:budgetapp/screens/edit_profile_screen.dart';
+import 'package:budgetapp/screens/reward_screen.dart';
+import 'package:budgetapp/screens/settings_screen.dart';
+import 'package:budgetapp/screens/statics_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:budgetapp/constants.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -22,12 +27,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        actions: const [
+        actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Icon(
-              Icons.edit,
-              color: Colors.black,
+            child: InkWell(
+              onTap: () => Get.to(EditProfile()),
+              child: Icon(
+                Icons.edit,
+                color: Colors.black,
+              ),
             ),
           ),
         ],
@@ -107,17 +115,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         MenuProfile(
                           data: 'Statics',
                           icon: Icons.leaderboard,
-                          onTap: () {},
+                          onTap: () => Get.to(StaticsScreen()),
                         ),
                         MenuProfile(
                           data: 'Reward',
                           icon: Icons.stars,
-                          onTap: () {},
+                          onTap: () => Get.to(RewardScreen()),
                         ),
                         MenuProfile(
                           data: 'Settings',
                           icon: Icons.settings,
-                          onTap: () {},
+                          onTap: () => Get.to(SettingsScreen()),
                         ),
                         MenuProfile(
                           data: 'Log out',
