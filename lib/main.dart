@@ -1,5 +1,3 @@
-import 'package:budgetapp/screens/add_entries.dart';
-import 'package:budgetapp/screens/entities_screen.dart';
 import 'package:budgetapp/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';

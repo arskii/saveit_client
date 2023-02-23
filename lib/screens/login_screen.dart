@@ -12,7 +12,7 @@ import '../components/title_screen.dart';
 import '../constants.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -36,11 +36,11 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Container(
           height: h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: const [
+                colors: [
                   mainColor,
                   secondColor,
                 ]),
@@ -50,7 +50,8 @@ class _LoginScreenState extends State<LoginScreen> {
               key: _formKey,
               child: Column(
                 children: [
-                  Expanded(flex: 2, child: TitleScreen(title: 'Welcome back')),
+                  const Expanded(
+                      flex: 2, child: TitleScreen(title: 'Welcome back')),
                   Expanded(
                     flex: 1,
                     child: Column(
@@ -87,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           obscureText: isHidden,
                           suffixIcon: InkWell(
                             onTap: _togglePasswordView,
-                            child: Align(
+                            child: const Align(
                               widthFactor: 1.0,
                               heightFactor: 1.0,
                               child: Icon(
@@ -108,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             Get.to(RecoveryScreen());
                           },
-                          child: Text(
+                          child: const Text(
                             'Forgot your password?',
                             style: TextStyle(
                                 fontFamily: 'Jost',

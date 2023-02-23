@@ -3,8 +3,6 @@ import 'package:budgetapp/screens/bill_screen/pages/sub_page.dart';
 import 'package:budgetapp/screens/expenses_screen/expenses_screen.dart';
 import 'package:budgetapp/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:budgetapp/constants.dart';

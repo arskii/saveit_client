@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class SecondButton extends StatelessWidget {
   final String text;
   final Function onTap;
-  SecondButton({
+  const SecondButton({
     super.key,
     required this.text,
     required this.onTap,
@@ -18,11 +18,11 @@ class SecondButton extends StatelessWidget {
     return InkWell(
       onTap: () => onTap(),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 30),
-        padding: EdgeInsets.symmetric(horizontal: 130, vertical: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 130, vertical: 20),
         decoration: BoxDecoration(
           border: Border.all(width: 2, color: accentColor),
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(10),
           ),
           color: Colors.white,
@@ -30,7 +30,7 @@ class SecondButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(color: Colors.black, fontSize: 30),
+            style: const TextStyle(color: Colors.black, fontSize: 30),
           ),
         ),
       ),

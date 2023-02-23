@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class EntityCard extends StatelessWidget {
   final String imageLink;
@@ -18,9 +15,9 @@ class EntityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(
           Radius.circular(10),
@@ -37,7 +34,7 @@ class EntityCard extends StatelessWidget {
               color: Colors.grey,
               image: DecorationImage(
                   fit: BoxFit.fill, image: AssetImage(imageLink)),
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(10),
               ),
             ),
@@ -47,7 +44,7 @@ class EntityCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(textTitle,
-                  style: TextStyle(fontSize: 15, fontFamily: 'Jost')),
+                  style: const TextStyle(fontSize: 15, fontFamily: 'Jost')),
               Text(textDesc, style: TextStyle(fontSize: 15, fontFamily: 'Jost'))
             ],
           ),
@@ -55,7 +52,7 @@ class EntityCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(textPrice,
-                  style: TextStyle(fontSize: 15, fontFamily: 'Jost'))
+                  style: const TextStyle(fontSize: 15, fontFamily: 'Jost'))
             ],
           )
         ],

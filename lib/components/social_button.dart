@@ -10,11 +10,11 @@ class SocialButton extends StatelessWidget {
     return InkWell(
       onTap: () => onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 65, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 65, vertical: 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Color(0xff1FAB89), width: 2),
+          border: Border.all(color: const Color(0xff1FAB89), width: 2),
         ),
         child: Center(child: icon),
       ),

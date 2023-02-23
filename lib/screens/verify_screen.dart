@@ -22,7 +22,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -35,18 +35,18 @@ class _VerifyScreenState extends State<VerifyScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 80,
                 ),
-                TitleScreen(title: 'Verify your email'),
-                SizedBox(
+                const TitleScreen(title: 'Verify your email'),
+                const SizedBox(
                   height: 120,
                 ),
-                Text(
+                const Text(
                   'Check you email for this 4 digit code and enter it here',
                   style: TextStyle(fontSize: 16, fontFamily: 'Jost'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 // VerifyBox(
@@ -61,7 +61,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                     controller: controller,
                     length: 4,
                     fieldWidth: 45,
-                    textStyle: TextStyle(fontSize: 20),
+                    textStyle: const TextStyle(fontSize: 20),
                     onChange: (pin) {
                       print("Changed: " + pin);
                     },
@@ -70,7 +70,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 200,
                 ),
                 MainButton(text: 'Confirm', onTap: () {})

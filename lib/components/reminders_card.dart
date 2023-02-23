@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class RemindersCard extends StatelessWidget {
   final String textTitle, textDesc, textPrice, linkDue;
-  RemindersCard({
+  const RemindersCard({
     super.key,
     required this.textTitle,
     required this.textDesc,
@@ -14,9 +14,9 @@ class RemindersCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 30, right: 30, bottom: 20),
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+      decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(
           Radius.circular(10),
@@ -28,7 +28,7 @@ class RemindersCard extends StatelessWidget {
           Container(
             height: 55,
             width: 50,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.grey,
               borderRadius: BorderRadius.all(
                 Radius.circular(10),
@@ -40,11 +40,11 @@ class RemindersCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(textTitle,
-                  style: TextStyle(fontSize: 15, fontFamily: 'Jost')),
+                  style: const TextStyle(fontSize: 15, fontFamily: 'Jost')),
               Text(textDesc,
-                  style: TextStyle(fontSize: 15, fontFamily: 'Jost')),
+                  style: const TextStyle(fontSize: 15, fontFamily: 'Jost')),
               Text(textPrice,
-                  style: TextStyle(fontSize: 15, fontFamily: 'Jost'))
+                  style: const TextStyle(fontSize: 15, fontFamily: 'Jost'))
             ],
           ),
           Column(
@@ -52,8 +52,9 @@ class RemindersCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               InkWell(child: SvgPicture.asset('assets/icons/dots.svg')),
-              SizedBox(height: 30),
-              Text(linkDue, style: TextStyle(fontSize: 15, fontFamily: 'Jost'))
+              const SizedBox(height: 30),
+              Text(linkDue,
+                  style: const TextStyle(fontSize: 15, fontFamily: 'Jost'))
             ],
           )
         ],

@@ -10,7 +10,7 @@ class PinCode extends StatelessWidget {
   final TextEditingController controller;
   final Function delete;
   final Function onSubmit;
-  PinCode({
+  const PinCode({
     super.key,
     required this.buttonColor,
     required this.buttonSize,
@@ -21,11 +21,11 @@ class PinCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 270,
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Row(
@@ -51,7 +51,7 @@ class PinCode extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Row(
@@ -77,7 +77,7 @@ class PinCode extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Row(
@@ -103,13 +103,13 @@ class PinCode extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 80,
                 width: 80,
               ),
@@ -142,7 +142,7 @@ class NumberButton extends StatelessWidget {
   final Color color;
   final TextEditingController controller;
 
-  NumberButton({
+  const NumberButton({
     super.key,
     required this.number,
     required this.color,
@@ -169,7 +169,7 @@ class NumberButton extends StatelessWidget {
         child: Center(
           child: Text(
             number.toString(),
-            style: TextStyle(
+            style: const TextStyle(
                 fontWeight: FontWeight.w400, color: Colors.black, fontSize: 35),
           ),
         ),

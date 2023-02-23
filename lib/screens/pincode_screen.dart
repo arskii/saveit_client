@@ -5,11 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:budgetapp/components/pincode_field.dart';
 import 'package:budgetapp/components/pincode_numpud.dart';
 
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:http/http.dart';
-
 import '../constants.dart';
 
 class PinCodeScreen extends StatefulWidget {
@@ -36,7 +32,7 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
       body: SingleChildScrollView(
         child: Container(
           height: h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -50,12 +46,12 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Welcome
-                Expanded(flex: 1, child: TitleScreen(title: 'Pin Code')),
+                const Expanded(flex: 1, child: TitleScreen(title: 'Pin Code')),
 
                 Expanded(
                   flex: 1,
                   child: Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     child: SizedBox(
                       width: 270,
                       height: 80,
@@ -68,7 +64,7 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
                         borderWidth: 2,
                         borderColor: Colors.white,
                         activeBorderColor: Color(0xFF1FAB89),
-                        textStyle: TextStyle(fontSize: 25),
+                        textStyle: const TextStyle(fontSize: 25),
                         length: 4,
                         controller: controller,
                         animation: Animations.slideInDown,
@@ -104,7 +100,7 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
                       Get.to(() => RecoveryScreen());
                       print('You clicked');
                     },
-                    child: Text(
+                    child: const Text(
                       'Forgot your pin?',
                       style: TextStyle(
                           fontSize: 17,

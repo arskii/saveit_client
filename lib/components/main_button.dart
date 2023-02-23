@@ -1,13 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
 
 class MainButton extends StatelessWidget {
   final String text;
   final Function onTap;
-  MainButton({
+  const MainButton({
     super.key,
     required this.text,
     required this.onTap,

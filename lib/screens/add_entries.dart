@@ -31,11 +31,11 @@ class _AddEntriesScreenState extends State<AddEntriesScreen> {
       body: SingleChildScrollView(
         child: Container(
           height: h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: const [
+                colors: [
                   mainColor,
                   secondColor,
                 ]),

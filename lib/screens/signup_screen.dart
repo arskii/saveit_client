@@ -2,12 +2,9 @@ import 'package:budgetapp/api/api_client.dart';
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/main_textfield.dart';
 import 'package:budgetapp/components/title_screen.dart';
-import 'package:budgetapp/screens/login_screen.dart';
-import 'package:budgetapp/screens/verify_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 
 import '../components/social_button.dart';
 import '../constants.dart';
@@ -41,7 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: SingleChildScrollView(
         child: Container(
           height: h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -57,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Welcome
-                  Expanded(
+                  const Expanded(
                     flex: 1,
                     child: TitleScreen(title: 'Create an account'),
                   ),
@@ -96,7 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             if (value != null || value.isNotEmpty) {
                               String pattern =
                                   r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                              RegExp regex = new RegExp(pattern);
+                              RegExp regex = RegExp(pattern);
                               return (!regex.hasMatch(value))
                                   ? 'email not valid'
                                   : null;
@@ -137,7 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           obscureText: isHidden,
                           suffixIcon: InkWell(
                             onTap: _togglePasswordView,
-                            child: Align(
+                            child: const Align(
                               widthFactor: 1.0,
                               heightFactor: 1.0,
                               child: Icon(

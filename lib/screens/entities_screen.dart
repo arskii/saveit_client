@@ -64,11 +64,11 @@ class _EntitiesScreenState extends State<EntitiesScreen> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: const [
+                colors: [
                   mainColor,
                   secondColor,
                 ]),

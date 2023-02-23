@@ -4,12 +4,10 @@ import 'package:budgetapp/components/title_screen.dart';
 import 'package:budgetapp/constants.dart';
 import 'package:budgetapp/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class RecoveryScreen extends StatefulWidget {
-  RecoveryScreen({super.key});
+  const RecoveryScreen({super.key});
 
   @override
   State<RecoveryScreen> createState() => _RecoveryScreenState();
@@ -26,7 +24,7 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
       body: SingleChildScrollView(
         child: Container(
           height: h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -38,8 +36,8 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
           child: SafeArea(
             child: Column(
               children: [
-                Expanded(flex: 3, child: TitleScreen(title: 'Recovery')),
-                SizedBox(
+                const Expanded(flex: 3, child: TitleScreen(title: 'Recovery')),
+                const SizedBox(
                   height: 150,
                 ),
                 Expanded(

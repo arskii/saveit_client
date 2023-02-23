@@ -1,8 +1,6 @@
-import 'package:budgetapp/components/profile_menu.dart';
-import 'package:budgetapp/components/title_screen.dart';
-import 'package:budgetapp/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:budgetapp/constants.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -24,10 +22,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        actions: [
+        actions: const [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
-            child: SvgPicture.asset('assets/icons/editIcon.svg'),
+            child: Icon(
+              Icons.edit,
+              color: Colors.black,
+            ),
           ),
         ],
       ),
@@ -59,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Container(
                           height: 170,
                           width: 110,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             image: DecorationImage(
                                 fit: BoxFit.fill,
                                 image: AssetImage('assets/cigun.jpg')),
@@ -77,26 +78,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               style: TextStyle(fontSize: 35),
                             ),
                             ProfileData(
-                              type_field: 'Username',
+                              typeField: 'Username',
                               info: '@Cigun4ik',
                             ),
                             ProfileData(
-                              type_field: 'Email',
+                              typeField: 'Email',
                               info: 'kotleta.aaaa@assasin.com',
                             ),
-                            ProfileData(
-                              type_field: 'Date of birth',
-                              info: '12.19.2001',
-                            ),
+                            // ProfileData(
+                            //   type_field: 'Date of birth',
+                            //   info: '12.19.2001',
+                            // ),
                           ],
                         ),
                       ],
                     ),
                   ),
                   Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         MenuProfile(
                           data: 'dashboard',
@@ -138,8 +139,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 class ProfileData extends StatelessWidget {
   final String? info;
-  final String type_field;
-  const ProfileData({super.key, required this.type_field, this.info});
+  final String typeField;
+  const ProfileData({super.key, required this.typeField, this.info});
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +148,7 @@ class ProfileData extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          type_field,
+          typeField,
           style: const TextStyle(
             fontFamily: 'Jost',
             fontSize: 18,
@@ -158,6 +159,37 @@ class ProfileData extends StatelessWidget {
           style: const TextStyle(fontSize: 22),
         ),
       ],
+    );
+  }
+}
+
+class MenuProfile extends StatelessWidget {
+  final String data;
+  final Function onTap;
+  final IconData icon;
+  const MenuProfile({
+    super.key,
+    required this.data,
+    required this.onTap,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => onTap(),
+      child: Row(
+        children: [
+          Icon(icon),
+          const SizedBox(
+            width: 25,
+          ),
+          Text(
+            data,
+            style: const TextStyle(color: Colors.black, fontSize: 24),
+          )
+        ],
+      ),
     );
   }
 }

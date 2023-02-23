@@ -20,11 +20,11 @@ class _RemindersScreenState extends State<RemindersScreen> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: const [
+                colors: [
                   mainColor,
                   secondColor,
                 ]),
@@ -32,7 +32,7 @@ class _RemindersScreenState extends State<RemindersScreen> {
           child: SafeArea(
             child: Column(
               children: [
-                Expanded(
+                const Expanded(
                   flex: 2,
                   child: Center(
                     child: Text(
@@ -88,8 +88,8 @@ class _RemindersScreenState extends State<RemindersScreen> {
                 Expanded(
                   flex: 2,
                   child: Align(
-                    child: MainButton(text: 'Add', onTap: () {}),
                     alignment: Alignment.bottomCenter,
+                    child: MainButton(text: 'Add', onTap: () {}),
                   ),
                 ),
               ],
