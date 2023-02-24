@@ -33,6 +33,13 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+          title: const TitleScreen(title: 'Welcome back'),
+          elevation: 0,
+          toolbarHeight: 150,
+          backgroundColor: Colors.transparent,
+          automaticallyImplyLeading: false),
       body: SingleChildScrollView(
         child: Container(
           height: h,
@@ -50,11 +57,10 @@ class _LoginScreenState extends State<LoginScreen> {
               key: _formKey,
               child: Column(
                 children: [
-                  const Expanded(
-                      flex: 2, child: TitleScreen(title: 'Welcome back')),
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         MainTexfield(
                           validator: (value) {
@@ -107,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            Get.to(RecoveryScreen());
+                            Get.to(() => const RecoveryScreen());
                           },
                           child: const Text(
                             'Forgot your password?',
@@ -151,10 +157,11 @@ class _LoginScreenState extends State<LoginScreen> {
       dynamic res = await ApiClient().login(datauser);
       print('Email: $_email, Password: $_password');
       if (res['detail'] == null) {
-        Get.off(() => PinCodeScreen());
+        Get.off(() => const PinCodeScreen());
       } else {
         //if error is present, display a snackbar showing the error messsage
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          behavior: SnackBarBehavior.floating,
           content: Text('${res['detail']}'),
           backgroundColor: Colors.red.shade300,
         ));

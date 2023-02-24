@@ -1,5 +1,6 @@
 import 'package:budgetapp/components/bottom_menu.dart';
-import 'package:budgetapp/screens/profile_screen.dart';
+import 'package:budgetapp/constants.dart';
+import 'package:budgetapp/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -16,10 +17,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, // remove debug flag
       title: 'Budget app',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        useMaterial3: true,
+        colorSchemeSeed: accentColor,
         fontFamily: 'BebasNeue',
       ),
-      home: BottomMenu(),
+      home: AuthScreen(),
     );
   }
 }

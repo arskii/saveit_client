@@ -19,7 +19,7 @@ class SecondButton extends StatelessWidget {
       onTap: () => onTap(),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 30),
-        padding: const EdgeInsets.symmetric(horizontal: 130, vertical: 20),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           border: Border.all(width: 2, color: accentColor),
           borderRadius: const BorderRadius.all(

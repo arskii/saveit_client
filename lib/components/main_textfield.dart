@@ -26,8 +26,7 @@ class MainTexfield extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(labelText, style: const TextStyle(fontSize: 20)),
-          const SizedBox(height: 5),
+          Text(labelText, style: const TextStyle(fontSize: 18)),
           TextFormField(
             validator: validator,
             onSaved: onSaved,
@@ -35,37 +34,37 @@ class MainTexfield extends StatelessWidget {
             obscureText: obscureText,
             keyboardType: keyboardType,
             decoration: InputDecoration(
-              alignLabelWithHint: true,
-              suffixIcon: suffixIcon,
-              labelStyle: const TextStyle(fontSize: 20),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    width: 0,
-                    style: BorderStyle.none,
-                  )),
-              errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    width: 0,
-                    style: BorderStyle.none,
-                  )),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    width: 0,
-                    style: BorderStyle.none,
-                  )),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    width: 0,
-                    style: BorderStyle.none,
-                  )),
-              fillColor: Colors.white,
-              filled: true,
-            ),
+                alignLabelWithHint: true,
+                suffixIcon: suffixIcon,
+                labelStyle: const TextStyle(fontSize: 20),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                focusedErrorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 0,
+                      style: BorderStyle.none,
+                    )),
+                errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 0,
+                      style: BorderStyle.none,
+                    )),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 0,
+                      style: BorderStyle.none,
+                    )),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 0,
+                      style: BorderStyle.none,
+                    )),
+                fillColor: Colors.white,
+                filled: true,
+                isDense: true),
             style: const TextStyle(
               fontSize: 18,
               fontFamily: 'Jost',

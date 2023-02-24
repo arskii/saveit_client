@@ -15,7 +15,7 @@ class EntityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       decoration: const BoxDecoration(
         color: Colors.white,

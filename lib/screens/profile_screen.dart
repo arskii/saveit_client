@@ -43,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height / 1.1,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -107,11 +107,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        MenuProfile(
-                          data: 'dashboard',
-                          icon: Icons.apps,
-                          onTap: () {},
-                        ),
                         MenuProfile(
                           data: 'Statics',
                           icon: Icons.leaderboard,

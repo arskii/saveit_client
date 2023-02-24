@@ -52,7 +52,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 text: 'Sign Up',
               ),
               SecondButton(
-                onTap: () => Get.to(LoginScreen()),
+                onTap: () => Get.to(() => LoginScreen()),
                 text: 'login',
               ),
             ],

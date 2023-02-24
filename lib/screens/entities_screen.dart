@@ -1,7 +1,8 @@
 import 'package:budgetapp/components/entity_card.dart';
-import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/constants.dart';
+import 'package:budgetapp/screens/add_entries.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EntitiesScreen extends StatefulWidget {
   const EntitiesScreen({super.key});
@@ -60,10 +61,34 @@ class _EntitiesScreenState extends State<EntitiesScreen> {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const Text(
+          'Entities',
+          style: TextStyle(color: Colors.black, fontSize: 25),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          color: textPrimary,
+          icon: Icon(Icons.arrow_back_ios_new),
+          onPressed: () {},
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: accentColor,
+        icon: const Icon(Icons.add, color: Colors.white),
+        onPressed: () => Get.to(() => AddEntriesScreen()),
+        label: const Text(
+          'ADD ENTRIES',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: h,
+          height: h / 1.1,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -74,32 +99,26 @@ class _EntitiesScreenState extends State<EntitiesScreen> {
                 ]),
           ),
           child: SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Expanded(flex: 1, child: EntityNav()),
-                Expanded(
-                  flex: 6,
-                  child: ListView.builder(
-                      itemCount: entity.length,
-                      shrinkWrap: true,
-                      itemBuilder: (BuildContext context, int index) {
-                        return EntityCard(
-                          imageLink: entity[index]['imageLink'],
-                          textTitle: entity[index]['textTitle'],
-                          textDesc: entity[index]['textDesc'],
-                          textPrice: entity[index]['textPrice'],
-                        );
-                      }),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: MainButton(
-                    text: 'Add Entries',
-                    onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Column(
+                children: [
+                  EntityNav(),
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: entity.length,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return EntityCard(
+                            imageLink: entity[index]['imageLink'],
+                            textTitle: entity[index]['textTitle'],
+                            textDesc: entity[index]['textDesc'],
+                            textPrice: entity[index]['textPrice'],
+                          );
+                        }),
                   ),
-                )
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -108,46 +127,35 @@ class _EntitiesScreenState extends State<EntitiesScreen> {
   }
 }
 
-class EntityNav extends StatelessWidget {
+enum EntitySegments { all, receive, sent }
+
+class EntityNav extends StatefulWidget {
   const EntityNav({super.key});
 
   @override
+  State<EntityNav> createState() => _EntityNavState();
+}
+
+class _EntityNavState extends State<EntityNav> {
+  EntitySegments _selected = EntitySegments.all;
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              'all',
-              style: TextStyle(fontSize: 18, color: Colors.black),
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              'Receive',
-              style: TextStyle(fontSize: 18, color: Colors.black),
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              'Sent',
-              style: TextStyle(fontSize: 18, color: Colors.black),
-            ),
-          ),
-        ],
-      ),
-    );
+    return SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: SegmentedButton<EntitySegments>(
+          segments: const [
+            ButtonSegment(value: EntitySegments.all, label: Text('All')),
+            ButtonSegment(
+                value: EntitySegments.receive, label: Text('Receive')),
+            ButtonSegment(value: EntitySegments.sent, label: Text('Sent')),
+          ],
+          selected: <EntitySegments>{_selected},
+          onSelectionChanged: (Set<EntitySegments> selected) {
+            setState(() {
+              _selected = selected.first;
+            });
+          },
+        ));
   }
 }

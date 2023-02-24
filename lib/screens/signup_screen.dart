@@ -35,6 +35,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+          title: const TitleScreen(title: 'Create an account'),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          automaticallyImplyLeading: false),
       body: SingleChildScrollView(
         child: Container(
           height: h,
@@ -54,15 +60,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Welcome
-                  const Expanded(
-                    flex: 1,
-                    child: TitleScreen(title: 'Create an account'),
-                  ),
-
                   Expanded(
                     flex: 3,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         MainTexfield(
                           validator: (value) {
@@ -82,9 +83,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           obscureText: false,
                         ),
 
-                        const SizedBox(
-                          height: 20,
-                        ),
                         MainTexfield(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -105,10 +103,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           controller: emailController,
                           labelText: 'Email',
                           obscureText: false,
-                        ),
-
-                        const SizedBox(
-                          height: 20,
                         ),
 
                         // password Textfield
@@ -144,10 +138,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
 
-                        const SizedBox(
-                          height: 20,
-                        ),
-
                         // repeat password
                         MainTexfield(
                           validator: (value) {
@@ -180,7 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Expanded(
                     flex: 1,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
                           'Or sign in with',
@@ -214,6 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Expanded(
                     flex: 1,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         const Text(
                           'By clicking SIGN UP you agree to the following Terms and Conditions',
@@ -268,6 +259,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          behavior: SnackBarBehavior.floating,
           content: Text('Error: ${['Message']}'),
           backgroundColor: Colors.red.shade300,
         ),

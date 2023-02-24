@@ -21,6 +21,13 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+          title: const TitleScreen(title: 'Recovery'),
+          toolbarHeight: 150,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          automaticallyImplyLeading: false),
       body: SingleChildScrollView(
         child: Container(
           height: h,
@@ -35,44 +42,39 @@ class _RecoveryScreenState extends State<RecoveryScreen> {
           ),
           child: SafeArea(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Expanded(flex: 3, child: TitleScreen(title: 'Recovery')),
-                const SizedBox(
-                  height: 150,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'We\'ll send you an email with a recovery code',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Jost',
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    MainTexfield(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your email address';
+                        }
+                        return null;
+                      },
+                      onSaved: (input) => _email = input,
+                      keyboardType: TextInputType.emailAddress,
+                      obscureText: false,
+                      labelText: 'Email',
+                      controller: emailController,
+                    ),
+                  ],
                 ),
-                Expanded(
-                  flex: 2,
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const Text(
-                          'We\'ll send you an email with a recovery code',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'Jost',
-                          ),
-                        ),
-                        MainTexfield(
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                          onSaved: (input) => _email = input,
-                          keyboardType: TextInputType.emailAddress,
-                          obscureText: false,
-                          labelText: 'Email',
-                          controller: emailController,
-                        ),
-                      ]),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: MainButton(
-                    onTap: () => Get.to(LoginScreen()),
-                    text: 'Send',
-                  ),
+                MainButton(
+                  onTap: () => Get.to(() => const LoginScreen()),
+                  text: 'Send',
                 ),
               ],
             ),

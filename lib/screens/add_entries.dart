@@ -28,6 +28,22 @@ class _AddEntriesScreenState extends State<AddEntriesScreen> {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        toolbarHeight: 80,
+        title: const Text(
+          'Add Entries',
+          style: TextStyle(color: Colors.black, fontSize: 25),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          color: textPrimary,
+          icon: Icon(Icons.arrow_back_ios_new),
+          onPressed: () => Get.back(),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Container(
           height: h,
@@ -44,19 +60,8 @@ class _AddEntriesScreenState extends State<AddEntriesScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Expanded(
-                  flex: 1,
-                  child: Center(
-                    child: Text(
-                      'Add Entries',
-                      style: TextStyle(
-                        fontSize: 25,
-                      ),
-                    ),
-                  ),
-                ),
                 Expanded(
-                  flex: 5,
+                  flex: 6,
                   child: Column(
                     children: [
                       MainTexfield(

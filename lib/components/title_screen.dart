@@ -19,7 +19,7 @@ class TitleScreen extends StatelessWidget {
           title,
           style: const TextStyle(
             color: Colors.black,
-            fontSize: 35,
+            fontSize: 30,
           ),
         ),
       ],
