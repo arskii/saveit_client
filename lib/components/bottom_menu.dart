@@ -2,6 +2,7 @@ import 'package:budgetapp/screens/bill_screen/bill_screen.dart';
 import 'package:budgetapp/screens/bill_screen/pages/sub_page.dart';
 import 'package:budgetapp/screens/entities_screen.dart';
 import 'package:budgetapp/screens/expenses_screen/expenses_screen.dart';
+import 'package:budgetapp/screens/home_screen.dart';
 import 'package:budgetapp/screens/settings_screen.dart';
 import 'package:budgetapp/screens/statics_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class BottomMenu extends StatefulWidget {
 class _BottomMenuState extends State<BottomMenu> {
   int _currentIndex = 0;
   final screens = const <Widget>[
-    EntitiesScreen(),
+    HomeScreen(),
     StaticsScreen(),
     ProfileScreen(),
   ];

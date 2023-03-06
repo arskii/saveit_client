@@ -59,79 +59,76 @@ class _AddEntriesScreenState extends State<AddEntriesScreen> {
           child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Expanded(
-                  flex: 6,
-                  child: Column(
-                    children: [
-                      MainTexfield(
-                          controller: controllerTitle,
-                          labelText: 'title',
-                          obscureText: false,
-                          keyboardType: TextInputType.name,
-                          validator: (value) {
-                            return null;
-                          },
-                          onSaved: (input) => _title = input),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      MainTexfield(
-                          controller: controllerCategory,
-                          labelText: 'category',
-                          obscureText: false,
-                          keyboardType: TextInputType.name,
-                          suffixIcon: InkWell(
-                            onTap: () {},
-                            child: Align(
-                              widthFactor: 1.0,
-                              heightFactor: 1.0,
-                              child: SvgPicture.asset(
-                                  'assets/icons/arrowDownBig.svg'),
-                            ),
+                Column(
+                  children: [
+                    MainTexfield(
+                        controller: controllerTitle,
+                        labelText: 'title',
+                        obscureText: false,
+                        keyboardType: TextInputType.name,
+                        validator: (value) {
+                          return null;
+                        },
+                        onSaved: (input) => _title = input),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    MainTexfield(
+                        controller: controllerCategory,
+                        labelText: 'category',
+                        obscureText: false,
+                        keyboardType: TextInputType.name,
+                        suffixIcon: InkWell(
+                          onTap: () {},
+                          child: Align(
+                            widthFactor: 1.0,
+                            heightFactor: 1.0,
+                            child: SvgPicture.asset(
+                                'assets/icons/arrowDownBig.svg'),
                           ),
-                          validator: (Value) {
-                            return null;
-                          },
-                          onSaved: (input) => _category = input),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      CustomDateTimeField(
-                        labelText: 'Date & time',
-                        onSaved: (input) => _date = input.toString(),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'payment mode',
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  PaymentCard(),
-                                  PaymentCard(),
-                                  PaymentCard(),
-                                  PaymentCard(),
-                                ],
-                              ),
-                            ]),
-                      ),
-                    ],
-                  ),
+                        ),
+                        validator: (Value) {
+                          return null;
+                        },
+                        onSaved: (input) => _category = input),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    CustomDateTimeField(
+                      labelText: 'Date & time',
+                      onSaved: (input) => _date = input.toString(),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'payment mode',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                PaymentCard(),
+                                PaymentCard(),
+                                PaymentCard(),
+                                PaymentCard(),
+                              ],
+                            ),
+                          ]),
+                    ),
+                  ],
                 ),
-                Expanded(flex: 1, child: MainButton(text: 'Add', onTap: () {})),
+                MainButton(text: 'Add', onTap: () {}),
               ],
             ),
           ),
