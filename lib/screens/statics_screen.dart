@@ -20,6 +20,18 @@ final List<ChartData> chartData = [
   ChartData('Others', 30, Colors.yellow)
 ];
 
+final List<ChartData> globalData = [
+  ChartData('Expanses', 20, Colors.grey),
+  ChartData('Saved', 30, accentColor),
+];
+final List<ChartAllData> chartAllData = [
+  ChartAllData(2018, 500, 300),
+  ChartAllData(2019, 500, 300),
+  ChartAllData(2020, 500, 300),
+  ChartAllData(2021, 500, 300),
+  ChartAllData(2022, 500, 300),
+];
+
 class _StaticsScreenState extends State<StaticsScreen> {
   late TooltipBehavior _tooltipBehavior;
 
@@ -55,105 +67,65 @@ class _StaticsScreenState extends State<StaticsScreen> {
                 secondColor,
               ]),
         ),
-        child: SafeArea(
-          child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 210,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: accentColor,
-                        ),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: Column(children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'January 2023',
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [Text('Saved'), Text('Expenses')],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            width: 130,
-                            height: 130,
-                            decoration: BoxDecoration(
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                        padding: EdgeInsets.all(10),
+                        width: MediaQuery.of(context).size.width,
+                        height: 250,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 2,
                               color: accentColor,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(100),
-                              ),
                             ),
-                            child: Center(
-                                child: Text(
-                              '\$1000',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                            )),
-                          ),
-                          Container(
-                            width: 130,
-                            height: 130,
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(100),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                '\$1000',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ]),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'your categories',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      Icon(Icons.more_horiz)
-                    ],
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 350,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 2,
-                        color: accentColor,
-                      ),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        child: SfCircularChart(
+                            // Initialize category axis
+                            legend: Legend(
+                                isVisible: true,
+                                position: LegendPosition.right),
+                            series: <CircularSeries>[
+                              // Render pie chart
+                              PieSeries<ChartData, String>(
+                                  dataSource: globalData,
+                                  pointColorMapper: (ChartData data, _) =>
+                                      data.color,
+                                  xValueMapper: (ChartData data, _) => data.x,
+                                  yValueMapper: (ChartData data, _) => data.y,
+                                  dataLabelSettings:
+                                      const DataLabelSettings(isVisible: true)),
+                            ])),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SfCircularChart(
+                        Text(
+                          'your categories',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Icon(Icons.more_horiz)
+                      ],
+                    ),
+                    Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 250,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 2,
+                            color: accentColor,
+                          ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        child: SfCircularChart(
                             // Initialize category axis
                             legend: Legend(isVisible: true),
                             series: <CircularSeries>[
@@ -166,12 +138,49 @@ class _StaticsScreenState extends State<StaticsScreen> {
                                   yValueMapper: (ChartData data, _) => data.y,
                                   dataLabelSettings:
                                       const DataLabelSettings(isVisible: true)),
-                            ])
+                            ])),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'during time',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Icon(Icons.more_horiz)
                       ],
                     ),
-                  ),
-                ],
-              )),
+                    Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 250,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 2,
+                            color: accentColor,
+                          ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        child: SfCartesianChart(
+                          primaryXAxis: NumericAxis(),
+                          primaryYAxis: NumericAxis(),
+                          series: <ChartSeries<ChartAllData, double>>[
+                            ColumnSeries(
+                              dataSource: chartAllData,
+                              xValueMapper: (ChartAllData data, _) => data.x,
+                              yValueMapper: (ChartAllData data, _) => data.y,
+                            ),
+                            ColumnSeries(
+                              dataSource: chartAllData,
+                              xValueMapper: (ChartAllData data, _) => data.x,
+                              yValueMapper: (ChartAllData data, _) => data.y1,
+                            ),
+                          ],
+                        )),
+                  ],
+                )),
+          ),
         ),
       ),
     );
@@ -183,4 +192,11 @@ class ChartData {
   final String x;
   final double y;
   final Color color;
+}
+
+class ChartAllData {
+  ChartAllData(this.x, this.y, this.y1);
+  final double x;
+  final double y;
+  final double y1;
 }
