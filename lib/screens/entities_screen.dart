@@ -103,7 +103,7 @@ class _EntitiesScreenState extends State<EntitiesScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Column(
                 children: [
-                  EntityNav(),
+                  const EntityNav(),
                   Expanded(
                     child: ListView.builder(
                         itemCount: entity.length,

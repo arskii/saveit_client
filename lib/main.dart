@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
         title: 'Budget app',
         theme: ThemeData(
           useMaterial3: true,
-          colorSchemeSeed: accentColor,
           colorScheme: lightColorScheme,
           fontFamily: 'BebasNeue',
         ),

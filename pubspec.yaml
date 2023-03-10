@@ -23,6 +23,7 @@ dependencies:
   date_field: ^3.0.2
   animations: ^2.0.7
   dynamic_color: ^1.6.2
+  syncfusion_flutter_charts: ^20.4.53
 
 dev_dependencies:
   flutter_test:

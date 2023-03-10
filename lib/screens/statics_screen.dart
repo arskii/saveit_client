@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
+import 'package:syncfusion_flutter_charts/charts.dart';
+
 class StaticsScreen extends StatefulWidget {
   const StaticsScreen({super.key});
 
@@ -11,7 +13,22 @@ class StaticsScreen extends StatefulWidget {
   State<StaticsScreen> createState() => _StaticsScreenState();
 }
 
+final List<ChartData> chartData = [
+  ChartData('Eats', 20, Colors.red),
+  ChartData('Home', 30, Colors.blue),
+  ChartData('Medicine', 20, Colors.green),
+  ChartData('Others', 30, Colors.yellow)
+];
+
 class _StaticsScreenState extends State<StaticsScreen> {
+  late TooltipBehavior _tooltipBehavior;
+
+  @override
+  void initState() {
+    _tooltipBehavior = TooltipBehavior(enable: true);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +59,7 @@ class _StaticsScreenState extends State<StaticsScreen> {
           child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 25),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -122,7 +139,7 @@ class _StaticsScreenState extends State<StaticsScreen> {
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 210,
+                    height: 350,
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 2,
@@ -136,23 +153,20 @@ class _StaticsScreenState extends State<StaticsScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          width: 130,
-                          height: 130,
-                          decoration: BoxDecoration(
-                            color: accentColor,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(100),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '100',
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.white),
-                            ),
-                          ),
-                        )
+                        SfCircularChart(
+                            // Initialize category axis
+                            legend: Legend(isVisible: true),
+                            series: <CircularSeries>[
+                              // Render pie chart
+                              PieSeries<ChartData, String>(
+                                  dataSource: chartData,
+                                  pointColorMapper: (ChartData data, _) =>
+                                      data.color,
+                                  xValueMapper: (ChartData data, _) => data.x,
+                                  yValueMapper: (ChartData data, _) => data.y,
+                                  dataLabelSettings:
+                                      const DataLabelSettings(isVisible: true)),
+                            ])
                       ],
                     ),
                   ),
@@ -162,4 +176,11 @@ class _StaticsScreenState extends State<StaticsScreen> {
       ),
     );
   }
+}
+
+class ChartData {
+  ChartData(this.x, this.y, this.color);
+  final String x;
+  final double y;
+  final Color color;
 }
