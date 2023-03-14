@@ -1,4 +1,5 @@
 import 'package:budgetapp/screens/home_screen.dart';
+import 'package:budgetapp/screens/saving_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'BebasNeue',
         ),
         darkTheme: AppTheme.darkTheme(darkColorScheme),
-        home: BottomMenu(),
+        home: SavingScreen(),
       );
     });
   }

@@ -1,5 +1,6 @@
 import 'package:budgetapp/components/entity_card.dart';
 import 'package:budgetapp/constants.dart';
+import 'package:budgetapp/screens/entities_screen.dart';
 import 'package:budgetapp/screens/saving_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -110,7 +111,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontSize: 20,
                       ),
                     ),
-                    Icon(Icons.more_horiz)
+                    InkWell(
+                        onTap: () => Get.to(EntitiesScreen()),
+                        child: Icon(Icons.more_horiz))
                   ],
                 ),
                 Column(

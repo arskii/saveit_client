@@ -1,4 +1,6 @@
+import 'package:budgetapp/api/savings.dart';
 import 'package:budgetapp/constants.dart';
+import 'package:budgetapp/models/saving.model.dart';
 import 'package:flutter/material.dart';
 
 class SavingScreen extends StatefulWidget {
@@ -8,60 +10,14 @@ class SavingScreen extends StatefulWidget {
   State<SavingScreen> createState() => _SavingScreenState();
 }
 
-final List savings = [
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200',
-    'currentSum': '\$200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200',
-    'currentSum': '\$200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200',
-    'currentSum': '\$200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200',
-    'currentSum': '\$200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200',
-    'currentSum': '\$200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200',
-    'currentSum': '\$200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200',
-    'currentSum': '\$200'
-  },
-];
-
 class _SavingScreenState extends State<SavingScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SavingsApi().readJson();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -103,17 +59,27 @@ class _SavingScreenState extends State<SavingScreen> {
                 ],
               ),
               Expanded(
-                child: ListView.builder(
-                  itemCount: savings.length,
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return GoalCard(
-                        imageLink: savings[index]['imageLink'],
-                        textTitle: savings[index]['textTitle'],
-                        textPrice: savings[index]['textPrice'],
-                        currentSum: savings[index]['currentSum']);
-                  },
-                ),
+                child: FutureBuilder(
+                    future: SavingsApi().readJson(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        final List<Saving> savings = snapshot.data;
+                        return ListView.builder(
+                          itemCount: savings.length,
+                          shrinkWrap: true,
+                          itemBuilder: (BuildContext context, int index) {
+                            return GoalCard(
+                              imageLink: savings[index].imageLink!,
+                              textTitle: savings[index].textTitle!,
+                              textPrice: savings[index].textPrice!,
+                              currentSum: savings[index].currentSum!,
+                            );
+                          },
+                        );
+                      } else {
+                        return CircularProgressIndicator();
+                      }
+                    }),
               )
             ]),
           ),

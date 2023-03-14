@@ -1,5 +1,7 @@
+import 'package:budgetapp/api/entities.dart';
 import 'package:budgetapp/components/entity_card.dart';
 import 'package:budgetapp/constants.dart';
+import 'package:budgetapp/models/entities.model.dart';
 import 'package:budgetapp/screens/add_entries.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,53 +13,15 @@ class EntitiesScreen extends StatefulWidget {
   State<EntitiesScreen> createState() => _EntitiesScreenState();
 }
 
-final List entity = [
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200'
-  },
-  {
-    'imageLink': 'assets/cigun.jpg',
-    'textTitle': 'Apple.de',
-    'textDesc': '14.02.2023',
-    'textPrice': '\$1200'
-  },
-];
-
 class _EntitiesScreenState extends State<EntitiesScreen> {
+  var isLoaded = false;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    EntitiesApi().readJson();
+  }
+
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -105,16 +69,26 @@ class _EntitiesScreenState extends State<EntitiesScreen> {
                 children: [
                   const EntityNav(),
                   Expanded(
-                    child: ListView.builder(
-                        itemCount: entity.length,
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return EntityCard(
-                            imageLink: entity[index]['imageLink'],
-                            textTitle: entity[index]['textTitle'],
-                            textDesc: entity[index]['textDesc'],
-                            textPrice: entity[index]['textPrice'],
-                          );
+                    child: FutureBuilder<List<Entities>>(
+                        future: EntitiesApi().readJson(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          if (snapshot.hasData) {
+                            final List<Entities> entity = snapshot.data;
+                            return ListView.builder(
+                                itemCount: entity.length,
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return EntityCard(
+                                    imageLink: entity[index].imageLink!,
+                                    textTitle: entity[index].textTitle!,
+                                    textDesc: entity[index].textDesc!,
+                                    textPrice: entity[index].textPrice!,
+                                  );
+                                });
+                          } else {
+                            return CircularProgressIndicator();
+                          }
                         }),
                   ),
                 ],
