@@ -87,7 +87,7 @@ class _EntitiesScreenState extends State<EntitiesScreen> {
                                   );
                                 });
                           } else {
-                            return CircularProgressIndicator();
+                            return const CircularProgressIndicator();
                           }
                         }),
                   ),

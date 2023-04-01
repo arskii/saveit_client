@@ -50,7 +50,7 @@ class _SavingScreenState extends State<SavingScreen> {
             child: Column(children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Text(
                     'Your Goals',
                     style: TextStyle(fontSize: 25),
@@ -77,7 +77,7 @@ class _SavingScreenState extends State<SavingScreen> {
                           },
                         );
                       } else {
-                        return CircularProgressIndicator();
+                        return Center(child: CircularProgressIndicator());
                       }
                     }),
               )
