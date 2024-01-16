@@ -1,4 +1,5 @@
-import 'package:budgetapp/models/reg_model.dart';
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 class ApiClient {
@@ -9,8 +10,8 @@ class ApiClient {
           await _dio.post('https://reqres.in/api/register', data: datauser);
       print(response.data);
       return response.data;
-    } on DioError catch (e) {
-      print(e.message);
+    } on DioException catch (e) {
+      log(e.message.toString());
       return e.message;
     }
   }
@@ -22,13 +23,13 @@ class ApiClient {
       print(response.data);
       print(response.statusCode);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
-        print(e.response!.data);
+        log(e.response!.data.toString());
         return e.response!.data;
       } else {
         // Something happened in setting up or sending the request that triggered an Error
-        print(e.message);
+        log(e.message.toString());
       }
     }
   }
@@ -44,7 +45,7 @@ class ApiClient {
         ),
       );
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }
@@ -58,7 +59,7 @@ class ApiClient {
         ),
       );
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }

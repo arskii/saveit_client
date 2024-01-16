@@ -1,5 +1,3 @@
-import 'package:budgetapp/screens/entities_screen.dart';
-
 class Entities {
   String? imageLink;
   String? textTitle;

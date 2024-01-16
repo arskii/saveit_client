@@ -1,13 +1,10 @@
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/main_textfield.dart';
 import 'package:budgetapp/constants.dart';
+import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:date_field/date_field.dart';
 
 class AddEntriesScreen extends StatefulWidget {
   AddEntriesScreen({
@@ -199,6 +196,7 @@ class CustomDateTimeField extends StatelessWidget {
             onDateSelected: (DateTime value) {
               print(value);
             },
+            onChanged: (DateTime? value) {},
           ),
         ],
       ),
