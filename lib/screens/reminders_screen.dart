@@ -1,4 +1,3 @@
-import 'package:budgetapp/components/entity_card.dart';
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/reminders_card.dart';
 import 'package:budgetapp/constants.dart';

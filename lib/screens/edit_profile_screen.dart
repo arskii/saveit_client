@@ -2,8 +2,6 @@ import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/main_textfield.dart';
 import 'package:budgetapp/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class EditProfile extends StatefulWidget {

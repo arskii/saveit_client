@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import 'package:budgetapp/api/api_client.dart';
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/screens/pincode_screen.dart';
 import 'package:budgetapp/screens/recovery_screen.dart';
-import 'package:get/get_connect/http/src/status/http_status.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../components/main_textfield.dart';
 import '../components/title_screen.dart';

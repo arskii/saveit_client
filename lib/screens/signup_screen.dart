@@ -1,10 +1,11 @@
+import 'dart:developer';
+
 import 'package:budgetapp/api/api_client.dart';
 import 'package:budgetapp/components/main_button.dart';
 import 'package:budgetapp/components/main_textfield.dart';
 import 'package:budgetapp/components/title_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 import '../components/social_button.dart';
 import '../constants.dart';
@@ -251,7 +252,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       };
       dynamic res = await ApiClient().registerUser(datauser);
       ScaffoldMessenger.of(context).hideCurrentSnackBar;
-      print('Username: $_username, Email: $_email, Password: $_password');
+      log('Username: $_username, Email: $_email, Password: $_password');
       //if (res['ErrorCode'] == null)
       // {
       //   Get.to(LoginScreen());
